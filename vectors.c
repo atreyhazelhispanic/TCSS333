@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 #include "vectors.h"
 
 //vector init function
@@ -21,7 +22,7 @@ float vector_dot(vector alpha, vector beta){
 
 //write vector_normalize function that takes a pointer to a vector as a parameter and modify the vector by dividing each of the x,y,z components by its length. Check if the length is zero and return 1 if it is zero (unsuccessful normalization) , otherwise return 0 (successful normalization)
 int vector_normalize(vector *alpha){
-	if(alpha.length == 0){
+	if(alpha->length == 0){
 		return 1;
 	}else{
 		alpha->x = alpha->x/alpha->length;

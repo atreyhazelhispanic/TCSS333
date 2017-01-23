@@ -24,7 +24,7 @@ int main(int argc, char *argv[]){
 
 	//find dot product of v1 and v2 and print it out
  	printf("The dot product of vectors is:\n");
- 	vector v4 = vector_dot(v1, v2);
+ 	float v4 = vector_dot(v1, v2);
  	vector_print(v4);
 	
 	//normalize v1 by v2 using the normalize method and print out v1 and v2 after normalization
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
  	printf("The normalized of vectors is:\n");
  	switch(vector_normalize(&v1)){
  		case '0':
- 			vector_print(&v1);
+ 			vector_print(v1);
  			break;
  		case '1':
  			printf("Due to length at 0 for first vector, vector wasn't normalized.\n");
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
  	}
  	switch(vector_normalize(&v2)){
  		case '0':
- 			vector_print(&v2);
+ 			vector_print(v2);
  			break;
  		case '1':
  			printf("Due to length at 0 for second vector, vector wasn't normalized.\n");

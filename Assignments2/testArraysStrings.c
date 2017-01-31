@@ -18,7 +18,7 @@ int main(){
 		if(NULL == alpha || NULL == beta)
 			return NULL;
 
-		int length = strlen((int) **beta);
+		int length = (int) strlen( **beta);
 		int left = 0;
 		int right = length -1;
 

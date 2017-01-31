@@ -29,6 +29,7 @@ int main(){
 			left++;
 			right--;
 		}
+		printf("%s\n", beta);
 		return beta;
 	}
 

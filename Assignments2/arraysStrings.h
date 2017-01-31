@@ -1,7 +1,7 @@
 //other includes are necessary
 #include "vectors.h"
 //fill in the parameters and return type
-joinrev();
+char* joinrev(char[] alpha, char** beta);
 joinrev_generic();
 readTextAddBinary();
 readBinaryNormText();

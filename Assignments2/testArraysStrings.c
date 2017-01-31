@@ -18,12 +18,12 @@ int main(){
 		if(NULL == alpha || NULL == beta)
 			return NULL;
 
-		int length = strlen(**beta);
+		int length = strlen((int) **beta);
 		int left = 0;
 		int right = length -1;
 
 		while(**beta){
-			int temp = beta[left];
+			char temp = beta[left];
 			beta[left] = beta[right];
 			beta[right] = beta[left];
 			left++;

@@ -1,5 +1,13 @@
-CC=gcc
-LD=gcc
-CFLAGS=-ggdb -std=c99 -Wall
-LIBS= -lm
 
+testVectors: vectors.o testVectors.o
+	gcc vectors.o testVectors.o -o testVectors
+
+vectors.o: vectors.c
+	gcc -c vectors.c
+
+testVectors.o: testVectors.c vectors.h
+	gcc -c testVectors.c
+
+clean:
+	rm *.o
+	rm testVectors

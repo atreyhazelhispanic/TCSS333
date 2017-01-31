@@ -18,18 +18,17 @@ int main(){
 		if(NULL == alpha || NULL == beta)
 			return NULL;
 
-		int length = (int) strlen(*beta);
+		int length = (int) strlen(beta);
 		int left = 0;
 		int right = length -1;
 
-		while(*beta){
+		while(left < right){
 			char temp = beta[left];
 			beta[left] = beta[right];
 			beta[right] = beta[left];
 			left++;
 			right--;
 		}
-		printf("%s\n", beta);
 		return beta;
 	}
 

@@ -13,7 +13,7 @@ int main(){
 	//Output should be:
 	//Hello dlroW
 	//Hint: joining the strings first and then reversing part of the joined string may be easier - ymmv
-	char* joinrev(char[] alpha, char **beta){
+	char* joinrev(char alpha[], char **beta){
 		//char arrays decay into pointers.
 		if(NULL == alpha || NULL == beta)
 			return NULL;

@@ -18,7 +18,8 @@ int main(){
 		if(NULL == alpha || NULL == beta)
 			return NULL;
 
-		int length = (int) strlen(beta);
+		char *temp = malloc(strlen(alpha) + strlen(beta) +1);
+		int length = strlen(beta);
 		int left = 0;
 		int right = length -1;
 
@@ -29,7 +30,10 @@ int main(){
 			left++;
 			right--;
 		}
-		return beta;
+
+		strcpy(temp, alpha);
+		strcpy(temp + strlen(alpha), beta);
+		return temp;
 	}
 
 	//Part 2 - 2 points 

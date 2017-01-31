@@ -22,7 +22,7 @@ int main(){
 		int left = 0;
 		int right = length -1;
 
-		while(**beta){
+		while(*beta){
 			char temp = beta[left];
 			beta[left] = beta[right];
 			beta[right] = beta[left];

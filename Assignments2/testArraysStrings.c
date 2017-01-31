@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
 #include "arraysStrings.h"
 
 int main(){
@@ -10,7 +13,25 @@ int main(){
 	//Output should be:
 	//Hello dlroW
 	//Hint: joining the strings first and then reversing part of the joined string may be easier - ymmv
-	
+	char[] joinrev(char[] alpha, char **beta){
+		//char arrays decay into pointers.
+		if(NULL == alpha || NULL == beta)
+			return NULL;
+
+		length = strlen(**beta);
+		left = 0;
+		right = length -1;
+
+		while(**beta){
+			temp = beta[left];
+			beta[left] = beta[right];
+			beta[right] = beta[left];
+			left++;
+			right--;
+		}
+		return beta;
+	}
+
 	//Part 2 - 2 points 
 	//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
 	//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3

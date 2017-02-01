@@ -59,7 +59,7 @@ int main(){
 		return 1;	
 	}*/
 	if(c) free(c);
-	if(vcs) free	(vcs); 
+	//if(vcs) free	(vcs); 
 	return 0;
 }
 

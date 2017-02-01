@@ -64,29 +64,29 @@ int main(){
 }
 
 char* joinrev(char alpha[], char *beta){
-		//char arrays decay into pointers.
-		if(NULL == alpha || NULL == beta)
-			return NULL;
+	//char arrays decay into pointers.
+	if(NULL == alpha || NULL == beta)
+		return NULL;
 
-		char *temp = malloc(strlen(alpha) + strlen(beta) + 1);
-		char beta2[strlen(beta) + 1];
-		strcpy(beta2, beta);
-		int length = strlen(beta);
-		int left = 0;
-		int right = length -1;
+	char *temp = malloc(strlen(alpha) + strlen(beta) + 1);
+	char beta2[strlen(beta) + 1];
+	strcpy(beta2, beta);
+	int length = strlen(beta);
+	int left = 0;
+	int right = length;
 
-		while(left < right){
-			char temporary = beta2[left];
-			beta2[left] = beta2[right];
-			beta2[right] = beta2[temporary];
-			left++;
-			right--;
-		}
+	while(left < right){
+		char temporary = beta2[left];
+		beta2[left] = beta2[right];
+		beta2[right] = beta2[temporary];
+		left++;
+		right--;
+	}
 
-		strcpy(temp, alpha);
-		strcat(temp, beta2);
+	strcpy(temp, alpha);
+	strcat(temp, beta2);
 
-		return temp;
+	return temp;
 	}
 /*
 void *joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size){

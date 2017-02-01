@@ -69,7 +69,7 @@ char* joinrev(char alpha[], char *beta){
 
 		char *temp = malloc(strlen(alpha) + strlen(beta) + 1);
 		char beta2[strlen(beta) + 1];
-		beta2 = strcpy(beta2, beta);
+		strcpy(beta2, beta);
 		int length = strlen(beta);
 		int left = 0;
 		int right = length -1;
@@ -89,6 +89,6 @@ char* joinrev(char alpha[], char *beta){
 	}
 
 void *joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size){
-	void *result = malloc((nmemba + nmembB) * size);
+	void *result = malloc((nmembA + nmembB) * size);
 
 }

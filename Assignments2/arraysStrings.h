@@ -3,7 +3,7 @@
 #include "vectors.h"
 //fill in the parameters and return type
 char* joinrev(char alpha[], char* beta);
-joinrev_generic();
+void* joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size);
 readTextAddBinary();
 readBinaryNormText();
 readNormTextWriteNormBinary();

@@ -19,7 +19,7 @@ int main(){
 	//Part 2 - 2 points 
 	//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
 	//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
-
+	/*
 	vector vas[3]={vector_init(1,1,1),vector_init(2,2,2),vector_init(3,3,3)};
 	vector vbs[3]={vector_init(4,4,4),vector_init(5,5,5),vector_init(6,6,6)};
 	vector *vcs=(vector *)joinrev_generic((void*)vas,(void*)vbs,sizeof(vector),sizeof(vas)/sizeof(vector),sizeof(vbs)/sizeof(vector));
@@ -30,7 +30,7 @@ int main(){
 	//Part 3 - 2 points
 	//Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename,  a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
 	//A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
-	/*
+	
 	if(readTextAddBinary("vectors.txt","vectors.bin")){
 		fprintf(stderr,"A fatal error occurred for readTextAddBinary\n");
 		return 1;  
@@ -88,8 +88,8 @@ char* joinrev(char alpha[], char *beta){
 
 		return temp;
 	}
-
+/*
 void *joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size){
 	void *result = malloc((nmembA + nmembB) * size);
 	return result;
-}
+}*/

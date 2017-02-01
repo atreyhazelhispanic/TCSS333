@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include <memory.h>
 #include "arraysStrings.h"
 
 int main(){
@@ -18,27 +19,32 @@ int main(){
 		if(NULL == alpha || NULL == beta)
 			return NULL;
 
-		char *temp = malloc(strlen(alpha) + strlen(beta) +1);
+		char *temp = malloc(strlen(alpha) + strlen(beta) + 2);
 		int length = strlen(beta);
 		int left = 0;
 		int right = length -1;
 
 		while(left < right){
-			char temp = beta[left];
+			char temporary = beta[left];
 			beta[left] = beta[right];
-			beta[right] = beta[left];
+			beta[right] = beta[temporary];
 			left++;
 			right--;
 		}
 
 		strcpy(temp, alpha);
 		strcpy(temp + strlen(alpha), beta);
+
 		return temp;
 	}
 
 	//Part 2 - 2 points 
 	//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
 	//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
+	void *joinrev_generic(void *alpha, void *beta, size_t nmemb, size_t size){
+		void *result = malloc(strlen(alpha) + strlen(beta) + 2);
+		
+	}
 
 	vector vas[3]={vector_init(1,1,1),vector_init(2,2,2),vector_init(3,3,3)};
 	vector vbs[3]={vector_init(4,4,4),vector_init(5,5,5),vector_init(6,6,6)};

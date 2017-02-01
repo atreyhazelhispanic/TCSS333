@@ -9,6 +9,7 @@ int main(){
 	char *b=" World ";
 	char *c=joinrev(a,b);
 	printf("%s\n",c);
+	printf("%s %s", a, b);
 	//Part 1 - 2 points
 	//write a function joinrev that takes 2 strings and returns a 3rd string that is th first string followed by the 2nd string reversed
 	//Output should be:
@@ -29,7 +30,7 @@ int main(){
 	//Part 3 - 2 points
 	//Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename,  a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
 	//A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
-	
+	/*
 	if(readTextAddBinary("vectors.txt","vectors.bin")){
 		fprintf(stderr,"A fatal error occurred for readTextAddBinary\n");
 		return 1;  
@@ -56,9 +57,9 @@ int main(){
 	if(wc("gettysburg.txt")){
 		fprintf(stderr,"A fatal error occurred for gettysburg.txt\n");
 		return 1;	
-	}
+	}*/
 	if(c) free(c);
-	if(vcs) free	(vcs);
+	if(vcs) free	(vcs); 
 	return 0;
 }
 

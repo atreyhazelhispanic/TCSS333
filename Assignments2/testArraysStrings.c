@@ -9,7 +9,6 @@ int main(){
 	char *b=" World ";
 	char *c=joinrev(a,b);
 	printf("%s\n",c);
-	printf("%s %s", a, b);
 	//Part 1 - 2 points
 	//write a function joinrev that takes 2 strings and returns a 3rd string that is th first string followed by the 2nd string reversed
 	//Output should be:
@@ -73,12 +72,12 @@ char* joinrev(char alpha[], char *beta){
 	strcpy(beta2, beta);
 	int length = strlen(beta);
 	int left = 0;
-	int right = length;
+	int right = length - 1;
 
 	while(left < right){
 		char temporary = beta2[left];
 		beta2[left] = beta2[right];
-		beta2[right] = beta2[temporary];
+		beta2[right] = temporary;
 		left++;
 		right--;
 	}

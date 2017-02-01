@@ -91,5 +91,5 @@ char* joinrev(char alpha[], char *beta){
 
 void *joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size){
 	void *result = malloc((nmembA + nmembB) * size);
-
+	return result;
 }

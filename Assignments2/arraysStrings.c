@@ -38,7 +38,8 @@ char* joinrev(char alpha[], char *beta){
 //Part 2 - 2 points 
 //write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
 //thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
-/*	if(alpha == NULL || beta == NULL)
+/*void *joinrev_generic(void *alpha, void *beta, size_t size, size_t nmembA, size_t nmembB){
+	if(alpha == NULL || beta == NULL)
 		return NULL;
 
 	void *result = malloc((nmembA + nmembB) * size);

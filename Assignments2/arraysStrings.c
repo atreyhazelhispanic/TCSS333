@@ -46,7 +46,16 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	void* beta2;
 	memcpy(beta2, beta, nmembB);
 	char* traverse = (char*) beta2;
-	printf("%lu", sizeof(traverse));
+	int left = 0;
+	int right = strlen(traverse) - 1;
+
+	while(left < right){
+		char temporary = traverse[left];
+		traverse[left] = traverse[right];
+		traverse[right] = temporary;
+		left++;
+		right--;
+	}
 
 
 

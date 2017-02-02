@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "vectors.c"
-#include "vectors.h"
 #include "arraysStrings.c"
 #include "arraysStrings.h"
 

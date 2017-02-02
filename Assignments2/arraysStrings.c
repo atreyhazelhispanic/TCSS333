@@ -45,9 +45,9 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	void* result = malloc((nmembA + nmembB) * size);
 	void* beta2;
 	memcpy(beta2, beta, nmembB);
-	char* ptr = (char*) beta2;
+	char traverse[strlen((char*) beta2)];
 
-	result = (void*) traverse;
+
 
 	return result;
 }

@@ -47,7 +47,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	memcpy(beta2, beta, nmembB);
 	char* traverse = beta2;
 	int left = 0;
-	int right = strlent(beta2) - 1;
+	int right = strlen(beta2) - 1;
 	printf("%d", right);
 
 

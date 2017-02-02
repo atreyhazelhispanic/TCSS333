@@ -9,15 +9,9 @@ int main(){
 	char *b=" World ";
 	char *c=joinrev(a,b);
 	printf("%s\n",c);
-	//Part 1 - 2 points
-	//write a function joinrev that takes 2 strings and returns a 3rd string that is th first string followed by the 2nd string reversed
-	//Output should be:
-	//Hello dlroW
-	//Hint: joining the strings first and then reversing part of the joined string may be easier - ymmv
+	
 
-	//Part 2 - 2 points 
-	//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
-	//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
+	
 	/*
 	vector vas[3]={vector_init(1,1,1),vector_init(2,2,2),vector_init(3,3,3)};
 	vector vbs[3]={vector_init(4,4,4),vector_init(5,5,5),vector_init(6,6,6)};
@@ -62,6 +56,11 @@ int main(){
 	return 0;
 }
 
+//Part 1 - 2 points
+//write a function joinrev that takes 2 strings and returns a 3rd string that is th first string followed by the 2nd string reversed
+//Output should be:
+//Hello dlroW
+//Hint: joining the strings first and then reversing part of the joined string may be easier - ymmv
 char* joinrev(char alpha[], char *beta){
 	//char arrays decay into pointers.
 	if(NULL == alpha || NULL == beta)
@@ -87,8 +86,17 @@ char* joinrev(char alpha[], char *beta){
 
 	return temp;
 	}
-/*
-void *joinrev_generic(void *alpha, size_t nmembA, void *beta, size_t nmembB, size_t size){
+
+//Part 2 - 2 points 
+//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
+//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
+void *joinrev_generic(void *alpha, void *beta, size_t size, size_t nmembA, size_t nmembB){
+	if(alpha == NULL || beta == NULL)
+		return NULL;
+
 	void *result = malloc((nmembA + nmembB) * size);
+	void *beta2;
+	memcpy(beta2, beta, nmembB);
+
 	return result;
-}*/
+}

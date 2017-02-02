@@ -9,14 +9,13 @@ int main(){
 	char *c=joinrev(a,b);
 	printf("%s\n",c);
 	
-	/*
 	vector vas[3]={vector_init(1,1,1),vector_init(2,2,2),vector_init(3,3,3)};
 	vector vbs[3]={vector_init(4,4,4),vector_init(5,5,5),vector_init(6,6,6)};
 	vector *vcs=(vector *)joinrev_generic((void*)vas,(void*)vbs,sizeof(vector),sizeof(vas)/sizeof(vector),sizeof(vbs)/sizeof(vector));
 	for(int i=0;i<(sizeof(vas)+sizeof(vbs))/sizeof(vector);i++){
  	vector_print(vcs[i]);
 	}
-	
+	/*
 	//Part 3 - 2 points
 	//Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename,  a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
 	//A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles

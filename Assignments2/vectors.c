@@ -13,7 +13,7 @@ vector vector_init(float x, float y, float z){
 }
 //write vector_add function that takes two vectors as parameters and returns a vector that is the sum of the two vectors
 vector vector_add(vector alpha, vector beta){
-	return vector_init(atof(alpha.x+beta.x),atof(alpha.y+beta.y),atof(alpha.z+beta.z));
+	return vector_init(alpha.x+beta.x,alpha.y+beta.y,alpha.z+beta.z);
 }
 //write vector_dot function that takes two vectors as parameters and returns a float which is the dot product (look it up if you don't know what a dot product is)
 float vector_dot(vector alpha, vector beta){

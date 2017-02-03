@@ -90,7 +90,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         }
     }
     fclose(theRead);
-    printf("%d\n", coutner2);
+    printf("%d\n", counter2);
 
 	return 0;
 }

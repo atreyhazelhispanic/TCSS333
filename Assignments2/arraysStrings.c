@@ -55,6 +55,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 		traverse[right] = temporary;
 		left++;
 		right--;
+		printf("%d %d\n", left, right);
 	}
 	
 	void* alpha2 = malloc(nmembA * size);

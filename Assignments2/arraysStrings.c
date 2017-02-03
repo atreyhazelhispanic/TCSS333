@@ -78,7 +78,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
     {
         c = fgetc(theRead);
 
-        if(c == \0){
+        if(c == "\0"){
         	printf ("%c", c);
         }
     }

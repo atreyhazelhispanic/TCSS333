@@ -79,7 +79,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
     {
         c = fgetc(theRead);
         value = c;
-        printf("%dn",value);
+        printf("%d\n",value);
     }
     fclose(theRead);
 

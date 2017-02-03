@@ -72,15 +72,16 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 //A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
 int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
+	FILE *theWrite = fopen(fileOut, "w+");
 	float first, second, third, fourth, fifth, sixth;
 	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 	char c = fgetc(theRead);
 	
     while (c != EOF)
     {
-    	printf("%f %f %f %f %f %f", first, second, third, fourth, fifth, sixth);
         c = fgetc(theRead);
         if(c == '\n');{
+        	vector_print(vector_add(vector_init(first, second, third), vector_init(fourth, fifth, sixth)));
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
         }
         

@@ -82,7 +82,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
     {
         c = fgetc(theRead);
         if(c == '\n');{
-        	printer = vector_print(vector_add(vector_init(first, second, third), vector_init(fourth, fifth, sixth)));
+        	vector theSum = vector_add(vector_init(first, second, third), vector_init(fourth, fifth, sixth));
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
         }
         

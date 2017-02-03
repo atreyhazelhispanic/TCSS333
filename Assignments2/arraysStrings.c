@@ -49,21 +49,15 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	int left = 0;
 	int right = nmembB - 1;
 
-	while(traverse){
-		printf("%s\n", traverse);
-	}
-
-
-	/*
 	while(left < right){
-		char temporary = traverse[left];
+		char temporary <- traverse[left];
 		printf("%s\n",temporary);
 		traverse[left] = traverse[right];
 		traverse[right] = temporary;
 		left++;
 		right--;
 	}
-	
+	/*
 	void* alpha2 = malloc(nmembA * size);
 	char* traverse2 = (char*) alpha2;
 	char* total;

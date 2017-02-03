@@ -84,11 +84,11 @@ int readTextAddBinary(char* fileIn, char* fileOut){
     	{
     		printf("%s\n", word);
     	    //wordfunction(word)
-        	//word = ""; //Reset word
+        	word = ""; //Reset word
     	}
     	else
     	{
-        	//trcat(word, c); //Keeps track of current word
+        	strcat(word, &c); //Keeps track of current word
     	}
     }
     fclose(theRead);

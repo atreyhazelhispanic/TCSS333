@@ -99,7 +99,9 @@ int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "rb");
 	FILE *theWrite = fopen(fileOut, "w+");
 
-
+	while(fread(&theRead, sizeof(theRead), 3, theWrite) == 1){
+		fprintf(theRead, "%f\n");
+	}	
 
 	return 0;
 }

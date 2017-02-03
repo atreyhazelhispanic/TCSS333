@@ -74,11 +74,12 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
 	char c = fgetc(theRead);
 	int value;
+	char* temp;
 
     while (c != EOF)
     {
         c = fgetc(theRead);
-        char* temp = c;
+        temp = c;
 
         if(c == ' '){
 

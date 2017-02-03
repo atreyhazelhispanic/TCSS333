@@ -51,9 +51,9 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 
 	while(left < right){
 		char temporary = traverse[left];
+		printf("%s\n",temporary);
 		traverse[left] = traverse[right];
 		traverse[right] = temporary;
-		printf("%d %d\n", left, right);
 		left++;
 		right--;
 	}

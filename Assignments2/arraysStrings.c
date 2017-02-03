@@ -81,13 +81,14 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         c = fgetc(theRead);
 
         if(c == ' '){
-        	counter++;
+        	
         	if(counter == 3){
         		counter = 0;
         		printf("worked\n");
         		counter2++;
         		
         	}
+        counter++;
         }
     }
     fclose(theRead);

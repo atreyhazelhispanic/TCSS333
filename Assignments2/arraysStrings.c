@@ -80,13 +80,13 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         c = fgetc(theRead);
         if(c == ' ' || c == '\n' || c == '\0' || c == '\t')
     	{
-    		printf("%s\n", word);
+    		printf("%c\n", c);
     	    //wordfunction(word)
-        	word = ""; //Reset word
+        	//word = ""; //Reset word
     	}
     	else
     	{
-        	strcat(word, c); //Keeps track of current word
+        	//trcat(word, c); //Keeps track of current word
     	}
     }
     fclose(theRead);

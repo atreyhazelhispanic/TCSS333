@@ -81,7 +81,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
     	{
     		printf("%s\n", c);
     	    //wordfunction(word)
-        	c = ''; //Reset word
+        	c = ' '; //Reset word
     	}
     	/*else
     	{

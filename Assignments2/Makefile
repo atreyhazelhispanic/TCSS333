@@ -12,7 +12,7 @@ testArraysStrings.o: testArraysStrings.c arraysStrings.h
 arraysStrings.o: arraysStrings.c
 	$(CC) $(CFLAGS) -c arraysStrings.c
 
-vectors.o: vectors.c
+vectors.o: vectors.c vectors.h
 	$(CC) $(CFLAGS) -c vectors.c
 
 clean:

@@ -83,9 +83,9 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         if(c == '\n');{
         	vector theSum = vector_add(vector_init(first, second, third), vector_init(fourth, fifth, sixth));
         	float theSolutions[3] = {theSum.x, theSum.y, theSum.z};
+        	fwrite(theSolutions, sizeof(float), 3, theWrite);
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-        }
-        
+        } 
     }
     fclose(theRead);
     

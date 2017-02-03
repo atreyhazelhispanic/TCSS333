@@ -74,14 +74,15 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
 	char c = fgetc(theRead);
 	char* word = "";
+	word = malloc(sizeof(char) * 10);
 
     while (c != EOF)
     {
         c = fgetc(theRead);
-        printf("%c\n", c);
+
         if(c == ' ' || c == '\n' || c == '\0' || c == '\t')
     	{
-    		
+    		printf("%s\n", word);
     	    //wordfunction(word)
         	//word = ""; //Reset word
     	}

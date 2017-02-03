@@ -16,15 +16,12 @@ int main(){
 	for(int i=0;i<(sizeof(vas)+sizeof(vbs))/sizeof(vector);i++){
  	vector_print(vcs[i]);
 	}
-	/*
-	//Part 3 - 2 points
-	//Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename,  a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
-	//A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
 	
 	if(readTextAddBinary("vectors.txt","vectors.bin")){
 		fprintf(stderr,"A fatal error occurred for readTextAddBinary\n");
 		return 1;  
-	}	
+	}
+	/*	
 	//Part 4 - 2 points
 	//Write a function readBinaryNormText that takes two strings as input (filenames) and returns 0 if the function completes successfully. The first argument is a binary file of type produced in part 3. The function will read it in,  normalize a, and print out to the text file in argument 2, the components, x,y,z, and length separated by tabs (all as one big line) ;
 	if(readBinaryNormText("vectors.bin","norm.txt")){
@@ -49,6 +46,6 @@ int main(){
 		return 1;	
 	}*/
 	if(c) free(c);
-	//if(vcs) free	(vcs); 
+	if(vcs) free	(vcs); 
 	return 0;
 }

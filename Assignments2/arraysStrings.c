@@ -72,7 +72,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 //A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
 int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
-	FILE *theWrite = fopen(fileOut, "w+");
+	FILE *theWrite = fopen(fileOut, "wb");
 	float first, second, third, fourth, fifth, sixth;
 	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 	char c = fgetc(theRead);
@@ -97,7 +97,9 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 //Write a function readBinaryNormText that takes two strings as input (filenames) and returns 0 if the function completes successfully. The first argument is a binary file of type produced in part 3. The function will read it in,  normalize a, and print out to the text file in argument 2, the components, x,y,z, and length separated by tabs (all as one big line) ;
 int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "rb");
-	
+	FILE *theWrite = fopen(fileOut, "w+");
+
+
 
 	return 0;
 }

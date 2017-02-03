@@ -61,10 +61,10 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	memcpy(alpha2, alpha, nmembA * size);
 	memcpy(alpha2 + (nmembA * size), beta2, (nmembA + nmembB) * size);
 	
-
+	/*
 	memmove(result, (void*) total, (nmembA + nmembB) * size);
 	
-	/*
+	
 	memmove(result, alpha2, nmembA * size);
 	memmove(result + nmembA, beta2, nmembB * size);
 	*/

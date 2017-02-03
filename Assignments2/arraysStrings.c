@@ -73,7 +73,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
 	char c = fgetc(theRead);
-	int counter = 0;
+	int counter, i = 0;
 
     while (c != EOF)
     {
@@ -82,7 +82,8 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         if(c == ' '){
         	counter++;
         	if(counter == 3){
-        		printf("worked\n");
+        		i++;
+        		printf("worked\n %d", i);
         		counter = 0;
         	}
         }

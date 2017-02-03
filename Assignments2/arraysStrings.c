@@ -48,7 +48,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	char* traverse = (char*) beta2;
 	int left = 0;
 	int right = nmembB - 1;
-	printf("%lu\n", right);
+
 	while(left < right){
 		char temporary = traverse[left];
 		traverse[left] = traverse[right];
@@ -57,11 +57,10 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 		right--;
 	}
 	
-	/*
 	void* alpha2;
 	memcpy(alpha2, alpha, nmembA);
 	memmove(alpha2 + nmembA, beta2, nmembB * size);
-	memmove(result, alpha2, (nmembA + nmembB) * size);*/
+	memmove(result, alpha2, (nmembA + nmembB) * size);
 
 	return result;
 }

@@ -58,9 +58,9 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	}
 	
 	void* alpha2;
-	memcpy(alpha2, alpha, nmembA);
+	memcpy(alpha2, alpha, nmembA);/*
 	memmove(alpha2 + nmembA, beta2, nmembB * size);
-	memmove(result, alpha2, (nmembA + nmembB) * size);
+	memmove(result, alpha2, (nmembA + nmembB) * size);*/
 
 	return result;
 }

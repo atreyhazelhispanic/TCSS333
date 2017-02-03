@@ -7,7 +7,7 @@ OBJECTS = testArraysStrings.o arraysStrings.o
 all: testArraysStrings
 
 testArraysStrings: testArraysStrings.o arraysStrings.o
-	$(CC) $(CFLAGS) -0 testArraysStrings testArraysStrings.o arraysStrings.o
+	$(CC) $(CFLAGS) -o testArraysStrings testArraysStrings.o arraysStrings.o
 
 testArraysStrings.o: testArraysStrings.c arraysStrings.h
 	$(CC) $(CFLAGS) -c testArraysStrings.c

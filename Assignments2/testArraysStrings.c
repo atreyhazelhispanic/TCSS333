@@ -16,12 +16,12 @@ int main(){
 	for(int i=0;i<(sizeof(vas)+sizeof(vbs))/sizeof(vector);i++){
  	vector_print(vcs[i]);
 	}
-	/*
+	
 	if(readTextAddBinary("vectors.txt","vectors.bin")){
 		fprintf(stderr,"A fatal error occurred for readTextAddBinary\n");
 		return 1;  
 	}
-		
+	/*	
 	//Part 4 - 2 points
 	//Write a function readBinaryNormText that takes two strings as input (filenames) and returns 0 if the function completes successfully. The first argument is a binary file of type produced in part 3. The function will read it in,  normalize a, and print out to the text file in argument 2, the components, x,y,z, and length separated by tabs (all as one big line) ;
 	if(readBinaryNormText("vectors.bin","norm.txt")){

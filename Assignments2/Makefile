@@ -2,15 +2,16 @@ CC=gcc
 LD=gcc
 CFLAGS=-ggdb -std=c99 -Wall
 LIBS= -lm
+OBJECTS = testArraysStrings.o arraysStrings.o
 
-testArraysStrings: arraysStrings.o testArraysStrings.o
-	gcc arraysStrings.o testArraysStrings.o -o testArraysStrings
+arrays.exe: $(OBJECTS)
+	$(CC) $(CFLAGS) -o arrays.exe
+
+testArraysStrings.o: testArraysStrings.c
+	$(CC) $(CFLAGS) -c testArraysStrings.c
 
 arraysStrings.o: arraysStrings.c
-	gcc -c arraysStrings.c
-
-testArraysStrings.o: testArraysStrings.c arraysStrings.h
-	gcc -c testArraysStrings.c
+	$(CC) $(CFLAGS) -c arraysStrings.c
 
 clean:
 	rm *.o

@@ -50,7 +50,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	int right = nmembB - 1;
 
 	while(left < right){
-		char* temporary = traverse[left];
+		char temporary = traverse[left];
 		traverse[left] = traverse[right];
 		traverse[right] = temporary;
 		left++;
@@ -62,5 +62,5 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 	memmove(alpha2 + nmembA, beta2, nmembB * size);
 	memmove(result, alpha2, (nmembA + nmembB) * size);
 
-	return (void*) traverse;
+	return (void*) result;
 }

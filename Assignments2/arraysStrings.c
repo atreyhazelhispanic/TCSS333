@@ -73,14 +73,13 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 int readTextAddBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
 	char c = fgetc(theRead);
-	char word = "";
 
     while (c != EOF)
     {
         c = fgetc(theRead);
         if(c == ' ' || c == '\n' || c == '\0' || c == '\t')
     	{
-    		printf("%s\n", word);
+    		printf("%s\n", c);
     	    //wordfunction(word)
         	word = ""; //Reset word
     	}

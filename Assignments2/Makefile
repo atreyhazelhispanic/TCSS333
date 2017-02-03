@@ -4,13 +4,15 @@ CFLAGS=-ggdb -std=c99 -Wall
 LIBS= -lm
 OBJECTS = testArraysStrings.o arraysStrings.o
 
-arrays.exe: $(OBJECTS)
-	$(CC) $(CFLAGS) -o arrays.exe
+all: testArraysStrings
 
-testArraysStrings.o: testArraysStrings.c
+testArraysStrings: testArraysStrings.o arraysStrings.o
+	$(CC) $(CFLAGS) -0 testArraysStrings testArraysStrings.o arraysStrings.o
+
+testArraysStrings.o: testArraysStrings.c arraysStrings.h
 	$(CC) $(CFLAGS) -c testArraysStrings.c
 
-arraysStrings.o: arraysStrings.c
+arraysStrings.o: arraysStrings.c arraysStrings.h
 	$(CC) $(CFLAGS) -c arraysStrings.c
 
 clean:

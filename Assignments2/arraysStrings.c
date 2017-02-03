@@ -71,7 +71,7 @@ void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_
 //Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename, a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
 //A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
 int readTextAddBinary(char* fileIn, char* fileOut){
-	fprintf(stderr, "%s\n", fileIn);
+	//fprintf(stderr, "%s\n", fileIn);
 
 	return 0;
 }

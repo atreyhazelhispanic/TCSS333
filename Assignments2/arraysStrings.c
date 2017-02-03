@@ -88,6 +88,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
         } 
     }
     fclose(theRead);
+    fclose(theWrite);
     
 	return 0;
 }

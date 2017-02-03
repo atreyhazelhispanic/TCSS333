@@ -97,9 +97,7 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 //Write a function readBinaryNormText that takes two strings as input (filenames) and returns 0 if the function completes successfully. The first argument is a binary file of type produced in part 3. The function will read it in,  normalize a, and print out to the text file in argument 2, the components, x,y,z, and length separated by tabs (all as one big line) ;
 int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "rb");
-	char* reader[10000];
-	fgets(reader, sizeof(reader), theRead);
-	printf("%s", reader);
+	
 
 	return 0;
 }

@@ -134,16 +134,17 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "r");
 	FILE *theWrite = fopen(fileOut, "wb");
-	char* c;
-
+	
 	fseek(theRead, 0, SEEK_END);
 	int size = ftell(theRead);
 	rewind(theRead);
+	char* c = malloc(size);
 
 	while(!feof(theRead)){
 		fgets(c, sizeof(theRead), theRead);
 		printf("%s", c);
 	}
+	free(c);
 
 	return 0;
 }

@@ -100,16 +100,21 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 	FILE *theWrite = fopen(fileOut, "w+");
 	float first, second, third, fourth, fifth, sixth;
 	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
+	char c = fgetc(theRead);
 	
-	while(!feof(theRead)){
-			vector vectorOne = vector_init(first, second, third);
+    while (c != EOF)
+    {
+        c = fgetc(theRead);
+        if(c == '\n');{
+        	vector vectorOne = vector_init(first, second, third);
 			vector vectorTwo = vector_init(fourth, fifth, sixth);
         	vector_normalize(&vectorOne);
         	vector_normalize(&vectorTwo);
         	vector theSolutions[2] = {vectorOne, vectorTwo};
         	fwrite(theSolutions, sizeof(float), 2, theWrite);
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-	}
+        } 
+    }
 	fclose(theRead);
 	fclose(theWrite);
 	

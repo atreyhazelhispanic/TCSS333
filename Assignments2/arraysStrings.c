@@ -100,7 +100,7 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 	FILE *theWrite = fopen(fileOut, "w+");
 
 	while(!feof(theRead)){
-		printf("%s\n", (fgetc(theRead)));
+		printf("%s\n", (fgets(theRead)));
 	}
 
 	return 0;

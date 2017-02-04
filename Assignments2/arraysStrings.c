@@ -130,3 +130,13 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 	
 	return 0;
 }
+
+//Part 5 - 2 points
+//Write a function readNormTextWriteNormBinary that takes two strings as input (filenames) and returns 0 
+//if the function completes successfully.. The first argument is the text file of type produced in part 4.  Read in the line using fgets or fread. 
+//Either use realloc or check for the size of the file using fseek, ftell to allocate enough space to store the line. Then use strtok to parse the file. Print the results out to a binary file in the same format as the binary file produced in part 3. Remember to free the memory.
+int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
+
+
+	return 0;
+}

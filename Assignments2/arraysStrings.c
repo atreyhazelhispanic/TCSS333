@@ -103,8 +103,8 @@ int readBinaryNormText(char* fileIn, char* fileOut){
     while (c != EOF)
     {
         c = fgetc(theRead);
-        fwrite(theRead, sizeof(theRead), 1, theWrite);
-        printf("%s", c);
+
+        printf("%c", c);
     }
 
 	return 0;

@@ -104,14 +104,14 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 	while(!feof(theRead)){
 		fgets(test, sizeof(theRead), theRead);
 		fwrite(test, sizeof(theRead), 1, theWrite);
-		printf("%s\n", test);
 
 	}
 
-
-	// while(!feof(reader)){
-	// 	printf("%s\n", (fgets(test, sizeof(reader), reader)));
-	// }
+	char* tester = malloc(sizeof(reader));
+	while(!feof(reader)){
+		fgets(tester, sizeof(reader), reader);
+		printf("%s", tester);
+	}
 
 	return 0;
 }

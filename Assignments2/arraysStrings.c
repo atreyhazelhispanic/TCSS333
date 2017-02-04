@@ -106,7 +106,8 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 			vector vectorTwo = vector_init(fourth, fifth, sixth);
         	vector_normalize(&vectorOne);
         	vector_normalize(&vectorTwo);
-        	// fwrite(theSolutions, sizeof(float), 3, theWrite);
+        	vector theSolutions[2] = {vectorOne, vectorTwo}
+        	fwrite(theSolutions, sizeof(float), 2, theWrite);
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 	}
 	

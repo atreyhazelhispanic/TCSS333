@@ -110,6 +110,8 @@ int readBinaryNormText(char* fileIn, char* fileOut){
         	fwrite(theSolutions, sizeof(float), 2, theWrite);
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 	}
+	fclose(theRead);
+	fclose(theWrite);
 	
 	return 0;
 }

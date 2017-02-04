@@ -142,7 +142,6 @@ int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 
 	while(!feof(theRead)){
 		fgets(c, sizeof(theRead), theRead);
-		printf("%s", c);
 	}
 	free(c);
 

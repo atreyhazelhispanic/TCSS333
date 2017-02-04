@@ -98,14 +98,11 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 int readBinaryNormText(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "rb");
 	FILE *theWrite = fopen(fileOut, "w+");
-	char c = fgetc(theRead);
-	
-    while (c != EOF)
-    {
-        c = fgetc(theRead);
+	char* test = malloc(sizeof(theRead));
 
-        printf("%c", c);
-    }
+	while(!feof(theRead)){
+		printf("%s\n", (fgets(theRead)));
+	}
 
 	return 0;
 }

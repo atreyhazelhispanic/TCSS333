@@ -101,7 +101,7 @@ int readBinaryNormText(char* fileIn, char* fileOut){
 	float first, second, third, fourth, fifth, sixth;
 	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 	char c = fgetc(theRead);
-	char tab = "\t";
+	char tab = (char)"\t";
 	
     while (c != EOF)
     {

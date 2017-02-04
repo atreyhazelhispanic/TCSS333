@@ -98,12 +98,10 @@ int readTextAddBinary(char* fileIn, char* fileOut){
 int readBinaryNormText(char* fileIn, char* fileOut){
 	FILE *theRead = fopen(fileIn, "rb");
 	FILE *theWrite = fopen(fileOut, "w+");
-	float first, second, third, fourth, fifth, sixth;
-	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
 
 	while(!feof(theRead)){
-		printf("%f %f %f %f %f %f\n", &first, &second, &third, &fourth, &fifth, &sixth);
-		fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
+		fread(test, sizeof(theRead), 1, theRead);
+		printf("%s", test);
 	}
 
 	return 0;

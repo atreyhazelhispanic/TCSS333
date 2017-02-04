@@ -113,7 +113,8 @@ int readBinaryNormText(char* fileIn, char* fileOut){
         	vector_normalize(&vectorTwo);
         	float theSolutions[8] = {vectorOne.x, vectorOne.y, vectorOne.z, vectorOne.length, vectorTwo.x, vectorTwo.y, vectorTwo.z, vectorTwo.length};
         	for(int i=0; i < sizeof(theSolutions); i++){
-        		fwrite(theSolutions[i], sizeof(float), 1, theWrite);
+        		float* solution = theSolutions[i];
+        		fwrite(solution, sizeof(float), 1, theWrite);
         		fwrite(tab, sizeof(char), 1, theWrite);
         	}
         	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
 #include <memory.h>
@@ -101,7 +100,7 @@ int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	FILE *theWrite = fopen(fileOut, "w+");
 
 	while(fread(&theWrite, sizeof(theWrite), 3, theRead) == 1){
-
+		
 	}
 
 	return 0;

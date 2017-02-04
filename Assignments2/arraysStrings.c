@@ -143,6 +143,7 @@ int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
 	while(!feof(theRead)){
 		fgets(c, sizeof(theRead), theRead);
 		char *token = strtok(c, " ");
+		fwrite(token, size, 1, theWrite);
 	}
 	free(c);
 

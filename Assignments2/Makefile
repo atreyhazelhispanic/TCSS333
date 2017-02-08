@@ -6,7 +6,7 @@ LIBS= -lm
 all: testArraysStrings vectors
 
 testArraysStrings: testArraysStrings.o arraysStrings.o 
-	$(CC) $(CFLAGS) testArraysStrings.o arraysStrings.o -o testArraysStrings
+	$(LD) testArraysStrings.o arraysStrings.o -o testArraysStrings $(LIBS)
 
 testArraysStrings.o: testArraysStrings.c arraysStrings.h
 	$(CC) $(CFLAGS) -c testArraysStrings.c

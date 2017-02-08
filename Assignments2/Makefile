@@ -15,7 +15,7 @@ arraysStrings.o: arraysStrings.c arraysStrings.h
 	$(CC) $(CFLAGS) -c arraysStrings.c
 
 vectors: testVectors.o vectors.o
-	$(CC) $(CFLAGS) testVectors.o vectors.o -o vectors
+	$(LD) testVectors.o vectors.o -o vectors $(LIBS)
 
 testVectors.o: testVectors.c vectors.h
 	$(CC) $(CFLAGS) testVectors.c

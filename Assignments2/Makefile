@@ -2,28 +2,16 @@ CC=gcc
 LD=gcc
 CFLAGS=-ggdb -std=c99 -Wall
 LIBS= -lm
+testArrayStrings.c: testArraysStrings.o vectors.o arraysStrings.o
+	$(LD) -o testArraysStrings testArraysStrings.o vectors.o arraysStrings.o $(LIBS)
+	
+vectors.o:	vectors.h vectors.c
+	$(CC) $(CFLAGS) -c vectors.c -o vectors.o
 
-all: testArraysStrings vectors
-
-testArraysStrings: testArraysStrings.o arraysStrings.o 
-	$(LD) testArraysStrings.o arraysStrings.o -o testArraysStrings $(LIBS)
-
-testArraysStrings.o: testArraysStrings.c arraysStrings.h
-	$(CC) $(CFLAGS) -c testArraysStrings.c
-
-arraysStrings.o: arraysStrings.c arraysStrings.h
-	$(CC) $(CFLAGS) -c arraysStrings.c
-
-vectors: testVectors.o vectors.o
-	$(LD) testVectors.o vectors.o -o vectors $(LIBS)
-
-testVectors.o: testVectors.c vectors.h
-	$(CC) $(CFLAGS) testVectors.c
-
-vectors.o: vectors.c vectors.h
-	$(CC) $(CFLAGS) -c vectors.c
-
+testArraysStrings.o:	testArraysStrings.c
+	$(CC) $(CFLAGS) -c testArraysStrings.c -o testArraysStrings.o
+arraysStrings.o : arraysStrings.c
+	$(CC) $(CFLAGS) -c arraysStrings.c -o arraysStrings.o
 clean:
 	rm *.o
 	rm testArraysStrings
-	rm vectors

@@ -1,151 +1,191 @@
-#include <stdio.h>
-#include <string.h>
-#include <malloc.h>
-#include <memory.h>
 #include "arraysStrings.h"
 
-//Part 1 - 2 points
-//write a function joinrev that takes 2 strings and returns a 3rd string that is th first string followed by the 2nd string reversed
-//Output should be:
-//Hello dlroW
-//Hint: joining the strings first and then reversing part of the joined string may be easier - ymmv
-char* joinrev(char alpha[], char *beta){
-	//char arrays decay into pointers.
-	if(NULL == alpha || NULL == beta)
-		return NULL;
-
-	char *temp = malloc(strlen(alpha) + strlen(beta) + 1);
-	char beta2[strlen(beta) + 1];
-	strcpy(beta2, beta);
-	int length = strlen(beta);
-	int left = 0;
-	int right = length - 1;
-
-	while(left < right){
-		char temporary = beta2[left];
-		beta2[left] = beta2[right];
-		beta2[right] = temporary;
-		left++;
-		right--;
+char *joinrev(char *a,char *b){
+	const int alength=strlen(a),blength=strlen(b); 
+	char *c=malloc(alength+blength+1); //need to make a copy in this case because joinrev must also work on literals
+	if(!c)return 0; //check that malloc worked
+	memcpy(c,a,alength);
+	memcpy(c+alength,b,blength+1); //can use strcpy too
+	char temp,*right,*left;
+	left=c+alength;
+	right=c+alength+blength-1;
+	while(left <right){
+	 temp=*right;
+	 *right--=*left;
+	 *left++=temp;
 	}
-
-	strcpy(temp, alpha);
-	strcat(temp, beta2);
-
-	return temp;
+	return c;
 }
 
-//Part 2 - 2 points 
-//write a function joinrev_generic that takes pointers to any two arrays, a typesize, and the number of elements in each array and does the same 
-//thing as joinrev except that it will return a void pointer and will work on any type of array. HINT - copy the code from part 1 and change the code so that the pointer arithmetic is done explicitly and the copies are done using memcpy and memmove as in the class example reverse3
-void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_t nmembB){
-	if(alpha == NULL || beta == NULL)
-		return NULL;
-
-	void* result = malloc((nmembA + nmembB) * size);
-	void* beta2 = malloc(nmembB * size);
-	memcpy(beta2, beta, nmembB * size);
-	char* traverse = (char*) beta2;
-	int left = 0;
-	int right = nmembB - 1;
-
-	while(left < right){
-		char temporary = traverse[left];
-		traverse[left] = traverse[right];
-		traverse[right] = temporary;
-		left++;
-		right--;
+void *joinrev_generic(void *a, void *b, int typeSize, int aElements, int bElements){
+ char *c=malloc((aElements+bElements)*typeSize); //make copy
+	if(!c)return 0; //check that malloc worked
+	memcpy(c,a,aElements*typeSize); //copy as in joinrev string edition
+	memcpy(c+aElements*typeSize,b,bElements*typeSize); //in this case we can't use stcpy
+ char temp[typeSize],*right,*left; //we need a temp variable for the swap
+	left=c+aElements*typeSize;        
+	right=c+(aElements+bElements-1)*typeSize;
+	while(left <right){
+	 memcpy(temp,right,typeSize);
+	 memmove(right,left,typeSize);
+	 right-=typeSize;
+	 memcpy(left,temp,typeSize);
+	 left+=typeSize;
 	}
-
-	void* alpha2 = malloc((nmembA + nmembB) * size);
-	memcpy(alpha2, alpha, nmembA * size);
-	memcpy(alpha2 + (nmembA * size), beta2, nmembB * size);
-	memmove(result, alpha2, (nmembA + nmembB) * size);
-	free(beta2);
-	free(alpha2);
-
-	return result;
+	return (void*) c;
 }
 
-//Part 3 - 2 points
-//Write a function readTextAddBinary that takes two strings (filenames) and returns 0 if the function completes successfully. The function reads from the first filename, a set of vectors, 2 per line and add them together and writes out a binary file (the second filename) with the new vectors (just the vectors - no spaces or other delimiters)
-//A test file is given to you along with the expected output - you can use the Unix diff function to compare your output with the expected output in testFiles
-int readTextAddBinary(char* fileIn, char* fileOut){
-	FILE *theRead = fopen(fileIn, "r");
-	FILE *theWrite = fopen(fileOut, "wb");
-	float first, second, third, fourth, fifth, sixth;
-	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-	char c = fgetc(theRead);
-	
-    while (c != EOF)
-    {
-        c = fgetc(theRead);
-        if(c == '\n');{
-        	vector theSum = vector_add(vector_init(first, second, third), vector_init(fourth, fifth, sixth));
-        	float theSolutions[3] = {theSum.x, theSum.y, theSum.z};
-        	fwrite(theSolutions, sizeof(float), 3, theWrite);
-        	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-        } 
-    }
-    fclose(theRead);
-    fclose(theWrite);
-    
+int readTextAddBinary(char *textFile, char *binFile){
+ FILE *infp=fopen(textFile,"r");
+ if(!infp){
+		fprintf(stderr,"unable to open input file %s\n",textFile);
+		return 1;
+	}
+ FILE *outfp=fopen(binFile,"w");
+ if(!outfp){
+		fprintf(stderr,"unable to open output file %s\n",binFile);
+		return 1;
+	}
+	char line[1024];
+	while(fgets(line,sizeof(line),infp)){
+		float x1,y1,z1,x2,y2,z2;
+		if(sscanf(line,"%f %f %f %f %f %f",&x1,&y1,&z1,&x2,&y2,&z2) != 6)return 1;
+		vector v=vector_init(x1+x2,y1+y2,z1+z2);
+		if(!fwrite(&v,sizeof(v),1,outfp))return 1;
+	}
+	fclose(infp);
+	fclose(outfp);
+ return 0;	
+}
+
+int readBinaryNormText(char *binFile, char *textFile){
+	FILE *infp=fopen(binFile,"r");
+ if(!infp){
+		fprintf(stderr,"unable to open input file %s\n",binFile);
+		return 1;
+	}
+ FILE *outfp=fopen(textFile,"w");
+ if(!outfp){
+		fprintf(stderr,"unable to open output file %s\n",textFile);
+		return 1;
+	}
+	vector v;
+	while(fread(&v,sizeof(vector),1,infp)){
+		vector_normalize(&v);
+		fprintf(outfp,"%f\t%f\t%f\t%f\t",v.x,v.y,v.z,v.length);
+	}		
+	fclose(infp);
+	fclose(outfp);
+	return 0;
+}
+int readNormTextWriteNormBinaryFtell(char *textFile, char *binFile){
+	FILE *infp=fopen(textFile,"r");
+ if(!infp){
+		fprintf(stderr,"unable to open input file %s\n",textFile);
+		return 1;
+	}
+ FILE *outfp=fopen(binFile,"w");
+ if(!outfp){
+		fprintf(stderr,"unable to open output file %s\n",binFile);
+		return 1;
+	}
+ fseek(infp,0,SEEK_END);
+ int nSize=ftell(infp);
+ rewind(infp);
+ char *line=(char*) malloc((nSize+1));
+ fread(line,nSize,1,infp);
+ line[nSize]='\0';
+ char *delim="\t\n";
+ char *token=strtok(line,delim);
+ while(token){
+		vector v;
+		v.x=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.y=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.z=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.length=atof(token);
+		if(!fwrite(&v,sizeof(vector),1,outfp)){free(line);return 1;}
+		token=strtok(0,delim);						
+	}
+		if(line)free(line);
+	fclose(infp);
+	fclose(outfp);
 	return 0;
 }
 
-//Part 4 - 2 points
-//Write a function readBinaryNormText that takes two strings as input (filenames) and returns 0 if the function completes successfully. The first argument is a binary file of type produced in part 3. The function will read it in,  normalize a, and print out to the text file in argument 2, the components, x,y,z, and length separated by tabs (all as one big line) ;
-int readBinaryNormText(char* fileIn, char* fileOut){
-	FILE *theRead = fopen(fileIn, "rb");
-	FILE *theWrite = fopen(fileOut, "w+");
-	float first, second, third, fourth, fifth, sixth;
-	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-	char c = fgetc(theRead);
-	char* tab = "\t";
-	
-    while (c != EOF)
-    {
-        c = fgetc(theRead);
-        if(c == '\n');{
-        	vector vectorOne = vector_init(first, second, third);
-			vector vectorTwo = vector_init(fourth, fifth, sixth);
-        	vector_normalize(&vectorOne);
-        	vector_normalize(&vectorTwo);
-        	float theSolutions[8] = {vectorOne.x, vectorOne.y, vectorOne.z, vectorOne.length, vectorTwo.x, vectorTwo.y, vectorTwo.z, vectorTwo.length};
-        	for(int i=0; i < sizeof(theSolutions); i++){
-        		float solution = theSolutions[i];
-        		float* solution2 = &solution;
-        		fwrite(solution2, sizeof(float), 1, theWrite);
-        		fwrite(tab, sizeof(char), 1, theWrite);
-        	}
-        	fscanf(theRead, "%f %f %f %f %f %f", &first, &second, &third, &fourth, &fifth, &sixth);
-        } 
-    }
-	fclose(theRead);
-	fclose(theWrite);
-	
+int readNormTextWriteNormBinaryRealloc(char *textFile, char *binFile){
+	FILE *infp=fopen(textFile,"r");
+ if(!infp){
+		fprintf(stderr,"unable to open input file %s\n",textFile);
+		return 1;
+	}
+ FILE *outfp=fopen(binFile,"w");
+ if(!outfp){
+		fprintf(stderr,"unable to open output file %s\n",binFile);
+		return 1;
+	}
+	int lineSize=8,lineStrLen=0;
+ char *line=(char*) malloc(lineSize);
+ if(!line)return 1;
+ int bytesRead=0;
+ while ((bytesRead=fread(line+lineStrLen,1,lineSize-lineStrLen,infp)) == lineSize-lineStrLen){ //read in at most lineSize bytes
+		//if byteRead is lineSize-lineStrLen - then we need more space
+		lineStrLen=lineSize;
+		lineSize*=2;
+		line=realloc(line,lineSize);
+		if(!line){fprintf(stderr,"unable to realloc more memory for line\n");return 1;}
+	}
+	//otherwise 
+	line[lineStrLen+bytesRead]='\0';
+
+ char *delim="\t\n";
+ char *token=strtok(line,delim);
+ while(token){
+		vector v;
+		v.x=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.y=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.z=atof(token);
+		if(!(token=strtok(0,delim))){free(line);return 1;}
+		v.length=atof(token);
+		if(!fwrite(&v,sizeof(vector),1,outfp)){free(line);return 1;}
+		token=strtok(0,delim);						
+	}
+	fclose(infp);
+	fclose(outfp);
+	if(line)free(line);
 	return 0;
 }
 
-//Part 5 - 2 points
-//Write a function readNormTextWriteNormBinary that takes two strings as input (filenames) and returns 0 
-//if the function completes successfully.. The first argument is the text file of type produced in part 4.  Read in the line using fgets or fread. 
-//Either use realloc or check for the size of the file using fseek, ftell to allocate enough space to store the line. Then use strtok to parse the file. Print the results out to a binary file in the same format as the binary file produced in part 3. Remember to free the memory.
-int readNormTextWriteNormBinary(char* fileIn, char* fileOut){
-	FILE *theRead = fopen(fileIn, "r");
-	FILE *theWrite = fopen(fileOut, "wb");
-	
-	fseek(theRead, 0, SEEK_END);
-	int size = ftell(theRead);
-	rewind(theRead);
-	char* c = malloc(size);
-
-	while(!feof(theRead)){
-		fgets(c, sizeof(theRead), theRead);
-		char *token = strtok(c, " ");
-		fwrite(token, size, 1, theWrite);
+int wc(char *textFile){
+	FILE *infp=fopen(textFile,"r");
+ if(!infp){
+		fprintf(stderr,"unable to open input file %s\n",textFile);
+		return 1;
 	}
-	free(c);
-
+	int inWord=0;
+	int nLines=0,nWords=0,nChars=0;
+	char c;
+	while (fread(&c,1,1,infp)){
+	 //find if change in status
+	 if(isspace(c)){
+			if(inWord){
+				nWords++;
+				inWord=0;
+			}	
+			if(c == '\n')nLines++;
+		}
+		else{
+			inWord=1;
+		}	
+		nChars++;	
+	}
+	fclose(infp);
+	//check for edge case
+	if(inWord) nWords++;
+	printf("   %d %d %d %s\n",nLines,nWords,nChars,textFile);
 	return 0;
 }

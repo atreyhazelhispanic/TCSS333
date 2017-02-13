@@ -1,10 +1,12 @@
-#ifndef Array_Strings
-#define Array_Strings
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include "vectors.h"
-//fill in the parameters and return type
-char* joinrev(char alpha[], char* beta);
-void* joinrev_generic(void* alpha, void* beta, size_t size, size_t nmembA, size_t nmembB);
-int readTextAddBinary(char* fileIn, char* fileOut);
-int readBinaryNormText(char* fileIn, char* fileOut);
-/*wc();*/
-#endif //Array_Strings
+
+char *joinrev(char *a,char *b);
+void *joinrev_generic(void *a, void *b, int typeSize, int aElements, int bElements);
+int readTextAddBinary(char *textFile, char *binFile);
+int readBinaryNormText(char *binFile, char *textFile);
+int readNormTextWriteNormBinaryFtell(char *textFile, char *binFile);
+int readNormTextWriteNormBinaryRealloc(char *textFile, char *binFile);
+int wc(char *textFile);

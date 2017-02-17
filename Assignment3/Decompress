@@ -1,0 +1,7 @@
+How to decompress .tar.bz2 at bash cmd line
+
+tar -vxjf /mnt/mydownloads/archive.tar.bz2
+
+The options stand for verbose, extract, pass thru gzip first, j specify bzip2 file.
+
+file path -> file name

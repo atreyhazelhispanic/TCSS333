@@ -1,1 +1,5 @@
-test
+How to decomress tar.bz2 at linux cmd line/bash
+
+tar -vxjf /mnt/mydownloads/archive.tar.bz2 
+
+where that is directory -> file name

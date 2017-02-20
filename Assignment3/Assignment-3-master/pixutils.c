@@ -11,7 +11,7 @@ static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap* pointer;
 	pointer -> image = calloc(arrayType+1, (arrayType+1)*MAXWIDTH);
 
-	printf("%c\n", arrayType;
+	printf("%c\n", arrayType);
 
 	/*switch(arrayType){
 		case 0:

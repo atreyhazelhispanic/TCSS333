@@ -8,6 +8,12 @@ static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap* pointer = calloc(1, sizeof(pixMap));
+	pointer -> image = calloc(arrayType+1, sizeof(pixMap));
+	pointer -> imageWidth = MAXWIDTH;
+	pointer -> imageHeight = arrayType+1;
+	pointer-> pixArray_arrays = calloc(1, sizof(unsigned char));
+	pointer -> pixArray_blocks = calloc((arrayType+1)*MAXWIDTH, sizof(unsigned char*));
+	pointer -> pixArray_overlay = calloc((arrayType+1)*MAXWIDTH, sizof(unsigned char*));
 
 	return pointer;
 }	

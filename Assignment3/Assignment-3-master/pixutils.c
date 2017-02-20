@@ -1,14 +1,37 @@
 #include "pixutils.h"
 
+#define MAXWIDTH 256
+
 //private methods -> make static
 static pixMap* pixMap_init(unsigned char arrayType);
 static pixMap* pixMap_copy(pixMap *p);
 
 
 static pixMap* pixMap_init(unsigned char arrayType){
-	//initialize everything to zero except arrayType
+	pixMap* pointer;
+	switch(arrayType){
+		case 0:
+		pointer -> &image = calloc(1, sizeof(struct pixMap));
+		for (int i=0 ; i<MAXWIDTH; i++)
+    	{
+           pointer[i] = (char*)calloc(MAXWIDTH, sizeof(char*));
+    	}
+		pointer -> imageHeight = 0;
+		pointer -> arrayType = arrayType;
+		break;
+
+		case 1:
+		pointer -> &image = calloc(2, sizeof(struct pixMap));
+		for (int i=0 ; i<MAXWIDTH; i++)
+    	{
+           pointer[i] = (char*)calloc(MAXWIDTH, sizeof(char*));
+    	}
+		pointer -> imageHeight = 0;
+		pointer -> arrayType = arrayType;
+	}
 }	
 
+/*
 void pixMap_destroy (pixMap **p){
  //free all mallocs and put a zero pointer in *p
 }

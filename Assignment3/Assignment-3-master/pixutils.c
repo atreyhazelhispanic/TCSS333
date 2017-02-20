@@ -9,25 +9,8 @@ static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
 	unsigned char* assign = calloc(arrayType+1, (arrayType+1)*MAXWIDTH);
-	pixMap* pointer = {assign, MAXWIDTH, arrayType+1, arrayType,
+	pixMap* pointer = {&assign, MAXWIDTH, arrayType+1, arrayType,
 		{0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
-
-	/*switch(arrayType){
-		case 0:
-			
-			for (int i=0 ; i<MAXWIDTH; i++)
-    		{
-           		pointer[i] = (char*)calloc(MAXWIDTH, sizeof(char*));
-    		}
-			pointer -> imageHeight = 0;
-			pointer -> arrayType = arrayType;
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		return pointer;
-	}*/
 	return pointer;
 }	
 

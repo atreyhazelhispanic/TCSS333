@@ -17,12 +17,17 @@ static pixMap* pixMap_init(unsigned char arrayType){
 
 	return pointer;
 }	
-/*
-void pixMap_destroy (pixMap **p){
- 	if(!p) return;
 
+void pixMap_destroy (pixMap **p){
+ 	if(!p)
+ 		fprintf(stderr, "None exist \n");
+ 	for(i=0; i<*(p -> imageHeight); ++i){
+ 		free(p[i]);
+ 	}
+
+ 	free(p);
 }
-	
+/*	
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
  //library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);

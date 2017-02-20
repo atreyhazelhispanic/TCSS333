@@ -11,7 +11,7 @@ static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap* pointer;
 	switch(arrayType){
 		case 0:
-			pointer -> &image = calloc(1, sizeof(struct pixMap));
+			pointer -> image = calloc(1, sizeof(struct pixMap));
 			for (int i=0 ; i<MAXWIDTH; i++)
     		{
            		pointer[i] = (char*)calloc(MAXWIDTH, sizeof(char*));

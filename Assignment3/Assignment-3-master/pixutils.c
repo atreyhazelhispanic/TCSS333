@@ -7,7 +7,7 @@ static pixMap* pixMap_init(unsigned char arrayType);
 static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
-	pixMap* pointer = calloc(1, sizof(pixMap));
+	pixMap* pointer = calloc(1, sizof(struct pixMap));
 
 	return pointer;
 }	

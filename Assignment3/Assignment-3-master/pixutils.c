@@ -10,7 +10,7 @@ static pixMap* pixMap_copy(pixMap *p);
 static pixMap* pixMap_init(unsigned char arrayType){
 	unsigned char* assign = calloc(arrayType+1, (arrayType+1)*MAXWIDTH);
 	pixMap* pointer = {&assign, MAXWIDTH, arrayType+1, arrayType,
-		{0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
+		(rgba){0,0,0,0}, (rgba){0,0,0,0}, (rgba){0,0,0,0}};
 	return pointer;
 }	
 

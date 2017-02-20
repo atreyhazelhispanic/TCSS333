@@ -7,17 +7,16 @@ static pixMap* pixMap_init(unsigned char arrayType);
 static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
-	unsigned char* assign = calloc(1, sizeof(pixMap));
-	pixMap* pointer = {&assign, MAXWIDTH, arrayType+1, arrayType,
-		(rgba){0,0,0,0}, (rgba){0,0,0,0}, (rgba){0,0,0,0}};
+	pixMap* pointer = calloc(1, sizof(pixMap));
+
 	return pointer;
 }	
-
+/*
 void pixMap_destroy (pixMap **p){
  	if(!p) return;
 
 }
-/*	
+	
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
  //library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);

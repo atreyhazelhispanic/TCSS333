@@ -22,9 +22,7 @@ void pixMap_destroy (pixMap **p){
  	if(!p)
  		fprintf(stderr, "None exist \n");
  	for(int i=0; i<MAXWIDTH; i++){
- 		for(int j=0; i<2; j++){
- 			free(p[i][j]);
- 		}
+ 		free(p[i]);
  	}
 
  	free(p);

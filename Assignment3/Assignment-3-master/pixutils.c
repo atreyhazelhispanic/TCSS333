@@ -21,7 +21,7 @@ static pixMap* pixMap_init(unsigned char arrayType){
 void pixMap_destroy (pixMap **p){
  	if(!p)
  		fprintf(stderr, "None exist \n");
- 	for(i=0; i<*(p -> imageHeight); ++i){
+ 	for(i=0; i< p -> imageHeight; ++i){
  		free(p[i]);
  	}
 

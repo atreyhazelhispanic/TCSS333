@@ -8,9 +8,9 @@ static pixMap* pixMap_copy(pixMap *p);
 
 
 static pixMap* pixMap_init(unsigned char arrayType){
-	pixMap* pointer = {
-		pointer -> image = calloc(arrayType+1, (arrayType+1)*MAXWIDTH)
-	};
+	unsigned char* assign = calloc(arrayType+1, (arrayType+1)*MAXWIDTH);
+	pixMap* pointer = {assign, MAXWIDTH, arrayType+1, arrayType,
+		{0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
 
 	/*switch(arrayType){
 		case 0:

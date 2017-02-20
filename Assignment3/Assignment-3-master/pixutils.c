@@ -9,7 +9,7 @@ static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap pointer = {
-		pointer -> image = calloc(arrayType+1, (arrayType+1)*MAXWIDTH)
+		pointer -> &image = calloc(arrayType+1, (arrayType+1)*MAXWIDTH)
 	};
 
 	/*switch(arrayType){
@@ -28,7 +28,7 @@ static pixMap* pixMap_init(unsigned char arrayType){
 			break;
 		return pointer;
 	}*/
-	return pointer;
+	return (pixMap*) pointer;
 }	
 
 /*

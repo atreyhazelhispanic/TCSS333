@@ -8,6 +8,7 @@ static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap* pointer = calloc(1, sizeof(pixMap));
+	pointer -> arrayType = arrayType;
 
 	return pointer;
 }	

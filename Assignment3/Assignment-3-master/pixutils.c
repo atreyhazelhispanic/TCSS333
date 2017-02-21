@@ -7,8 +7,7 @@ static pixMap* pixMap_init(unsigned char arrayType);
 static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
-	pixMap* pointer;
-	memset(pointer, 0, (arrayType+1)*MAXWIDTH*sizeof(unsigned char*));
+	pixMap* pointer = calloc(1, sizeof(pixMap));
 
 	return pointer;
 }	
@@ -18,7 +17,7 @@ void pixMap_destroy (pixMap **p){
  		fprintf(stderr, "None exist \n");
  	for(int i=0; i<MAXWIDTH; i++){
  		for(int j=0; j<3; j++){
- 			free (p[i])+j;
+ 			free ((p[i])+j);
  		}
  	}
 

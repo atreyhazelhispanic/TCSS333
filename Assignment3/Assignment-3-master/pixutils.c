@@ -35,6 +35,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	}
  	//allocate the 2-D rgba arrays
  	p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(*p));
+ 	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(*p));
 
 	if (arrayType ==0){
   	//can only allocate for the number of rows - each row will be an array of MAXWIDTH

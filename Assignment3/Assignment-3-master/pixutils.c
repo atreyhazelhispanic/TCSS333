@@ -17,7 +17,7 @@ void pixMap_destroy (pixMap **p){
  	if(!p)
  		fprintf(stderr, "None exist \n");
  	for(int i=0; i<MAXWIDTH; i++){
- 		for(int j=0; j<3; j++){
+ 		for(int j=0; j<&(p->imageHeight); j++){
  			free ((p[i])+j);
  		}
  	}
@@ -32,7 +32,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
  	if((error=lodepng_decode32_file(&(p->image), &(p->imageWidth), &(p->imageHeight),filename))){
   		fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
   		return 0;
-		}
+	}
  	//allocate the 2-D rgba arrays
  
 	if (arrayType ==0){
@@ -54,7 +54,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	}				
 	return p;
 }
-
+/*
 int pixMap_write(pixMap *p,char *filename){
 	int error=0;
 	//for arrayType 1 and arrayType 2 have to write out a controws  to the image using memcpy

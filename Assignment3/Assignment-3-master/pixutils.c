@@ -41,8 +41,9 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		for(int i=0; p->image[i] != '\0'; i++){
-			
+
 		}
+		printf("%s\n", p->image);
 	}	
 	else if (arrayType ==1){
 		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers

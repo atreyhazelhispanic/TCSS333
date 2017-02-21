@@ -8,7 +8,7 @@ static pixMap* pixMap_copy(pixMap *p);
 
 static pixMap* pixMap_init(unsigned char arrayType){
 	pixMap* pointer;
-	memset(pointer, 0, MAXWIDTH*sizeof(unsigned char*));
+	memset(pointer, 0, (arrayType+1)*MAXWIDTH*sizeof(unsigned char*));
 
 	return pointer;
 }	

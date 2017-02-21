@@ -17,14 +17,14 @@ void pixMap_destroy (pixMap **p){
  	if(!p)
  		fprintf(stderr, "None exist \n");
  	for(int i=0; i<MAXWIDTH; i++){
- 		for(int j=0; j<3; j++){
+ 		for(int j=0; j< p->imageHeight; j++){
  			free ((p[i])+j);
  		}
  	}
 
  	free(p);
 }
-/*	
+/*
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
  //library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
@@ -54,6 +54,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	}				
 	return p;
 }
+
 int pixMap_write(pixMap *p,char *filename){
 	int error=0;
 	//for arrayType 1 and arrayType 2 have to write out a controws  to the image using memcpy

@@ -38,18 +38,21 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
  	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(*p));
 
 	if (arrayType ==0){
-  	//can only allocate for the number of rows - each row will be an array of MAXWIDTH
-  	//copy each row of the image into each row
+  		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
+  		//copy each row of the image into each row
+		for(int i=0; p->image[i] != '\0'; i++){
+			
+		}
 	}	
 	else if (arrayType ==1){
-	//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
-	//use a loop allocate a block of memory for each row
-	//copy each row of the image into the newly allocated block
+		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
+		//use a loop allocate a block of memory for each row
+		//copy each row of the image into the newly allocated block
  	}
 	else if (arrayType ==2){
-  	//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
-  	//set the first pointer to the start of p->image
-  	//each subsequent pointer is the previous pointer + p->imageWidth
+  		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
+  		//set the first pointer to the start of p->image
+  		//each subsequent pointer is the previous pointer + p->imageWidth
 	}
 	else{
 		return 0;

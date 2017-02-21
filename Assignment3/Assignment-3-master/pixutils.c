@@ -26,28 +26,28 @@ void pixMap_destroy (pixMap **p){
 }
 /*
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
- //library call reads in the image into p->image and sets the width and height
+ 	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
- int error;
- if((error=lodepng_decode32_file(&(p->image), &(p->imageWidth), &(p->imageHeight),filename))){
-  fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
-  return 0;
-	}
- //allocate the 2-D rgba arrays
+ 	int error;
+ 	if((error=lodepng_decode32_file(&(p->image), &(p->imageWidth), &(p->imageHeight),filename))){
+  		fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
+  		return 0;
+		}
+ 	//allocate the 2-D rgba arrays
  
 	if (arrayType ==0){
-  //can only allocate for the number of rows - each row will be an array of MAXWIDTH
-  //copy each row of the image into each row
+  	//can only allocate for the number of rows - each row will be an array of MAXWIDTH
+  	//copy each row of the image into each row
 	}	
 	else if (arrayType ==1){
-		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
-		//use a loop allocate a block of memory for each row
-  //copy each row of the image into the newly allocated block
- }
+	//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
+	//use a loop allocate a block of memory for each row
+	//copy each row of the image into the newly allocated block
+ 	}
 	else if (arrayType ==2){
-  //allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
-  //set the first pointer to the start of p->image
-  //each subsequent pointer is the previous pointer + p->imageWidth
+  	//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
+  	//set the first pointer to the start of p->image
+  	//each subsequent pointer is the previous pointer + p->imageWidth
 	}
 	else{
 		return 0;

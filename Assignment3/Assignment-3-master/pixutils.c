@@ -17,14 +17,14 @@ void pixMap_destroy (pixMap **p){
  	if(!p)
  		fprintf(stderr, "None exist \n");
  	for(int i=0; i<MAXWIDTH; i++){
- 		for(int j=0; j<&(p->imageHeight); j++){
+ 		for(int j=0; j<3; j++){
  			free ((p[i])+j);
  		}
  	}
 
  	free(p);
 }
-/*
+
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
  	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
@@ -34,7 +34,8 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		return 0;
 	}
  	//allocate the 2-D rgba arrays
- 
+ 	p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(p*));
+
 	if (arrayType ==0){
   	//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   	//copy each row of the image into each row

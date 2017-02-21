@@ -6,7 +6,6 @@
 #include <math.h>
 #include "lodepng/lodepng.h"
 
-
 #ifndef M_PI
  #define M_PI 3.14159265
 #endif
@@ -32,8 +31,8 @@ typedef struct{
 }pixMap;
 
 //public methods
-pixMap* pixMap_read(char *inputFile, unsigned char arrayType); //return zero pointer if failure
-int pixMap_write(pixMap *p, char *outputFile); //return 1 if failure
-int pixMap_rotate(pixMap *p,float theta);
-void pixMap_destroy (pixMap **p); //free memory and set p to zero
+//pixMap* pixMap_read(char *inputFile, unsigned char arrayType); //return zero pointer if failure
+//int pixMap_write(pixMap *p, char *outputFile); //return 1 if failure
+//int pixMap_rotate(pixMap *p,float theta);
+//void pixMap_destroy (pixMap **p); //free memory and set p to zero
 #endif

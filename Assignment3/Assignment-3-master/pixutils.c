@@ -14,10 +14,12 @@ static pixMap* pixMap_init(unsigned char arrayType){
 }	
 
 void pixMap_destroy (pixMap **p){
+	int width = p->imageWidth;
+
  	if(!p)
  		fprintf(stderr, "None exist \n");
- 	for(int i=0; i< p->imageWidth; i++){
- 		for(int j=0; j< p->imageHeight; j++){
+ 	for(int i=0; i<MAXWIDTH; i++){
+ 		for(int j=0; j<3; j++){
  			free ((p[i])+j);
  		}
  	}//redo

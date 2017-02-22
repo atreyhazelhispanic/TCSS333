@@ -65,7 +65,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 		}
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
-				memcpy(&(p->pixArray_blocks)[i][j], &(p->image)[i][j], sizeof(rgba));
+				memcpy(&(p->pixArray_blocks)[i]+j, &(p->image)[i]+j, sizeof(rgba));
 			}
 		}
  	}
@@ -79,7 +79,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		}
   		for(int i=0; i<rows; i++){
   			for(int j=0; j<columns; j++){
-  				memcpy(&(p->pixArray_overlay)[i][j], &(p->image)[i][j], sizeof(rgba));
+  				memcpy(&(p->pixArray_overlay)[i]+j, &(p->image)[i]+j, sizeof(rgba));
   			}
   		}
 	}

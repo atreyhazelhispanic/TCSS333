@@ -61,7 +61,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 		//copy each row of the image into the newly allocated block
 		p -> pixArray_blocks = malloc(rows*sizeof(rgba));
 		for(int i=0; i<rows; i++){
-			&p->pixArray_blocks[i] = malloc(columns*sizeof(rgba));
+			p->pixArray_blocks[i] = malloc(columns*sizeof(rgba));
 		}
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
@@ -75,7 +75,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//each subsequent pointer is the previous pointer + p->imageWidth
   		p -> pixArray_overlay = malloc(rows*sizeof(rgba));
   		for(int i=0; i<rows; i++){
-  			&p->pixArray_overlay[i] = malloc(columns*sizeof(rgba));
+  			 p->pixArray_overlay[i] = malloc(columns*sizeof(rgba));
   		}
   		for(int i=0; i<rows; i++){
   			for(int j=0; j<columns; j++){

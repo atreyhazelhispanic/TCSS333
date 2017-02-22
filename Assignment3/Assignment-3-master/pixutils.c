@@ -15,19 +15,22 @@ static pixMap* pixMap_init(unsigned char arrayType){
 
 void pixMap_destroy (pixMap **p){
 	int width = (**p).imageWidth;
+	int height = (**p).imageHeight;
 
  	if(!p)
  		fprintf(stderr, "None exist \n");
- 	for(int i=0; i<MAXWIDTH; i++){
- 		for(int j=0; j<3; j++){
+ 	for(int i=0; i<width; i+=MAXWIDTH){
+ 		for(int j=0; j<height; j++){
  			free ((p[i])+j);
  		}
- 	}//redo
+ 	}
 
  	free(p);
 }
 
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
+	int rows = p -> imageWidth;
+	int columns = p -> imageHeight;
  	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
  	int error;
@@ -40,7 +43,6 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
  	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(*p));
 
 	if (arrayType ==0){
-		int rows = p -> imageWidth;
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		p -> pixArray_arrays = malloc(rows*MAXWIDTH*sizeof(unsigned char));

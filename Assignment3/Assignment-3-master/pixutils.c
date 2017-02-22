@@ -29,8 +29,6 @@ void pixMap_destroy (pixMap **p){
 }
 
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
-	int rows = p -> imageWidth;
-	int columns = p -> imageHeight;
  	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
  	int error;
@@ -38,6 +36,9 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
   		return 0;
 	}
+
+	int rows = p -> imageWidth;
+	int columns = p -> imageHeight;
  	//allocate the 2-D rgba arrays
  	p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(*p));
  	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(*p));

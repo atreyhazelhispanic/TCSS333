@@ -42,9 +42,12 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		return 0;
 	}
 
+	arrayType = atoi(arrayType);
 	int columns = p -> imageWidth;
 	int rows = p -> imageHeight;
  	//allocate the 2-D rgba arrays
+	p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(*void));
+ 	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(*void));
 
 	if (arrayType ==0){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH

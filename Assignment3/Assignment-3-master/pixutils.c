@@ -41,7 +41,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		p -> pixArray_arrays = (rgba *) malloc((p->imageWidth)*MAXWIDTH*sizeof(unsigned char));
-		for(int i=0; i < imageWidth; i+=MAXWIDTH){
+		for(int i=0; i < p->imageWidth; i+=MAXWIDTH){
 			memcpy(p->pixArray_arrays[i], p->image[i], MAXWIDTH*sizeof(unsigned char));
 		}
 	}	

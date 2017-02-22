@@ -23,8 +23,8 @@ void pixMap_destroy (pixMap **p){
  	switch((**p).arrayType){
  		case '0':
  			for(int i=0; i<rows; i++){
- 				free(&(p->pixArray_arrays)[i]);
- 				free(&(p->image)[i]);
+ 				free(&(p**).pixArray_arrays[i]);
+ 				free(&(p**).image[i]);
  			}
  			break;
  		case '1':

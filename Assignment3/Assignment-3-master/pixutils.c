@@ -34,7 +34,7 @@ void pixMap_destroy (pixMap **p){
 }
 
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
-	printf("%c\n", arrayType);
+	printf("%c\n\n\n\n", arrayType);
  	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
  	int error;

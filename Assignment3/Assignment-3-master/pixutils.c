@@ -14,7 +14,7 @@ static pixMap* pixMap_init(unsigned char arrayType){
 }	
 
 void pixMap_destroy (pixMap **p){
-	int width = *(*p->imageWidth);
+	int width = *(*(p->imageWidth));
 
  	if(!p)
  		fprintf(stderr, "None exist \n");

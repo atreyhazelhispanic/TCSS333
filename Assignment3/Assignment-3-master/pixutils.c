@@ -22,7 +22,7 @@ void pixMap_destroy (pixMap **p){
 
  	switch((**p).arrayType){
  		case '0':
- 			f
+ 			
  			break;
  		case '1':
 
@@ -48,7 +48,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(void*));
  	p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(void*));
 
-	if (atoi(arrayType) == 0){
+	if ((int) atoi(arrayType) == 0){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		p -> pixArray_arrays = malloc(rows*sizeof(rgba[MAXWIDTH]));
@@ -56,7 +56,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 			memcpy(&(p->pixArray_arrays)[i], &(p->image)[i], columns*sizeof(rgba));
 		}
 	}	
-	else if (atoi(arrayType) == 1){
+	else if ((int) atoi(arrayType) == 1){
 		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
 		//use a loop allocate a block of memory for each row
 		//copy each row of the image into the newly allocated block
@@ -70,7 +70,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 			}
 		}
  	}
-	else if (atoi(arrayType) == 2){
+	else if ((int) atoi(arrayType) == 2){
   		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
   		//set the first pointer to the start of p->image
   		//each subsequent pointer is the previous pointer + p->imageWidth

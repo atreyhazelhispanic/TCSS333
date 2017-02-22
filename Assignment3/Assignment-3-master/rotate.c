@@ -24,9 +24,8 @@ int main(int argc, char *argv[]){
 			fprintf(stderr,"unable to allocate memory for pixMap\n");
 			return 1;
 		}	
-  pixMap_rotate(p,theta);
-  pixMap_write(p,outputfile);  
-  pixMap_destroy(&p);
+  //pixMap_rotate(p,theta);
+  //pixMap_write(p,outputfile);  
+  //pixMap_destroy(&p);
   return 0;
 }
-

@@ -43,7 +43,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//copy each row of the image into each row
 		p -> pixArray_arrays = malloc(rows*MAXWIDTH*sizeof(unsigned char));
 		for(int i=0; i<rows; i+=MAXWIDTH){
-			memcpy(p->pixArray_arrays[i], p->image[i], MAXWIDTH*sizeof(unsigned char));
+			memcpy((char) p->pixArray_arrays[i], (char) p->image[i], MAXWIDTH*sizeof(unsigned char));
 		}
 	}	
 	else if (arrayType ==1){

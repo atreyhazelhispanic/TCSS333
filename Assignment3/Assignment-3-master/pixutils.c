@@ -20,7 +20,7 @@ void pixMap_destroy (pixMap **p){
  		for(int j=0; j<3; j++){
  			free ((p[i])+j);
  		}
- 	}
+ 	}//redo
 
  	free(p);
 }
@@ -40,8 +40,9 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	if (arrayType ==0){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
-		for(int i=0; i < p->imageWidth; i+=MAXWIDTH){
-			p -> image[i] = (unsigned char*) malloc(MAXWIDTH*sizeof(unsigned char));
+		p -> pixArray_arrays = (rgba *) malloc((p->imageWidth)*MAXWIDTH*sizeof(unsigned char));
+		for(int i=0; i < imageWidth; i+=MAXWIDTH){
+			memcpy(p->pixArray_arrays[i], p->image[i], MAXWIDTH*sizeof(unsigned char));
 		}
 	}	
 	else if (arrayType ==1){

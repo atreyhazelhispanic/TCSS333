@@ -41,8 +41,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		for(int i=0; p->image[i] != '\0'; i+=MAXWIDTH){
-			unsigned char temp = malloc(MAXWIDTH*sizeof(unsigned char));
-			p -> image[i] = temp;
+			p -> image[i] = (unsigned char) malloc(MAXWIDTH*sizeof(unsigned char));
 		}
 	}	
 	else if (arrayType ==1){

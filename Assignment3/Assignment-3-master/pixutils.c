@@ -102,22 +102,19 @@ int pixMap_write(pixMap *p,char *filename){
 	if(p->arrayType == 0){
    		//have to copy each row of the array into the corresponding row of the image	
 		p -> image = malloc(rows*sizeof(rgba[MAXWIDTH]));
-		for(int i=0; i<rows; i++){
+		for(int i=0; i<rows; i++)
 			memcpy(&(p->image)[i], &(p->pixArray_arrays)[i], columns*sizeof(rgba));
-		}
 	}	
 	else if(p->arrayType == 1){
    		//have to copy each row of the array into the corresponding row of the image
 		p -> image = malloc(rows*columns*sizeof(rgba));
-		for(int i=0; i<rows; i++){
+		for(int i=0; i<rows; i++)
 			memcpy(&p->image[i], &p->pixArray_blocks[i], sizeof(rgba));
-		}
 	}
 	else if(p->arrayType == 2){
 		p -> image = malloc(rows*columns*sizeof(rgba));
-		for(int i=0; i<rows; i++){
+		for(int i=0; i<rows; i++)
 			memcpy(&p->image[i], &p->pixArray_overlay, sizeof(rgba));
-		}
 	}
 	//library call to write the image out 
 	 if(lodepng_encode32_file(filename, p->image, p->imageWidth, p->imageHeight)){

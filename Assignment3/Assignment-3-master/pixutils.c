@@ -70,7 +70,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 		//copy each row of the image into the newly allocated block
 		p -> pixArray_blocks = malloc(rows*columns*sizeof(rgba));
 		for(int i=0; i<rows; i++)
-			memcpy(&p->pixArray_blocks[i], &p->image[i], sizeof(rgba));
+			memcpy(&p->pixArray_blocks[i], &p->image[i], columns*sizeof(rgba));
  	}
 	else if (arrayType == 2){
   		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
@@ -78,7 +78,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//each subsequent pointer is the previous pointer + p->imageWidth
   		p -> pixArray_overlay = malloc(rows*columns*sizeof(rgba));
   		for(int i=0; i<rows; i++)
-  			memcpy(&p->pixArray_overlay[i], &p->image[i], sizeof(rgba));
+  			memcpy(&p->pixArray_overlay[i], &p->image[i], columns*sizeof(rgba));
 	}
 	else{
 		return 0;

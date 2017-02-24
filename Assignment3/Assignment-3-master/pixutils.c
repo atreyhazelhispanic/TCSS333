@@ -20,7 +20,7 @@ void pixMap_destroy (pixMap **p){
 	int columns = (**p).imageWidth;
 	int rows = (**p).imageHeight;
 
-	free((**p).image);
+	free(p.image);
 
  	switch((**p).arrayType){
  		case '0':

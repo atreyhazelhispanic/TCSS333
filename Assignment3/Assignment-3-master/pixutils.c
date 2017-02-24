@@ -116,7 +116,7 @@ int pixMap_write(pixMap *p,char *filename){
 	}
 	return 0;
 }	 
-/*
+
 int pixMap_rotate(pixMap *p,float theta){
 	pixMap *oldPixMap=pixMap_copy(p);
 	if(!oldPixMap)return 1;
@@ -145,7 +145,7 @@ int pixMap_rotate(pixMap *p,float theta){
  pixMap_destroy(&oldPixMap);
  return 0;
 }
-*/
+
 pixMap *pixMap_copy(pixMap *p){
 	pixMap *new=pixMap_init(p->arrayType);
 	int rows = p->imageHeight;

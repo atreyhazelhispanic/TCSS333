@@ -30,13 +30,13 @@ void pixMap_destroy (pixMap **p){
  			break;
  		case '1':
  			for(int i=0; i<rows; i++){
- 				free(pixArray_blocks[i]);
+ 				free((**p).pixArray_blocks[i]);
  			}
  			free(p);
  			break;
  		case '2':
  			for(int i=0; i<rows; i++){
- 				free(pixArray_overlay);
+ 				free((**p).pixArray_overlay);
  			}
  			free(p);
  			break;

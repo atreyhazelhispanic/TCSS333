@@ -17,7 +17,7 @@ void pixMap_destroy (pixMap **p){
 	if(!p)
  		fprintf(stderr, "None exist \n");
 
-	int rows = (**p).imageHeight;
+	int rows = (*p).imageHeight;
 
 	free((**p).image);
 

@@ -155,14 +155,14 @@ pixMap *pixMap_copy(pixMap *p){
 	//allocate memory and copy the arrays. 
 	if (new->arrayType == 0){
 		for(int i=0; i<rows; i++)
-			memcpy(&new->pixArray_arrays[i], &p->pixArray_arrays[i], sizeof(rows*rgba[MAXWIDTH]));
+			memcpy(&new->pixArray_arrays[i], &p->pixArray_arrays[i], sizeof(rows*sizeof(rgba[MAXWIDTH])));
 	}	
  	else if (new->arrayType == 1){
 		for(int i=0; i<rows; i++)
 			memcpy(&new->pixArray_blocks, &p->pixArray_blocks, sizeof(rows*columns*sizeof(rgba)));
 	}
 	else if (new->arrayType == 2){
-		for(int i=0; i<rows, i++)
+		for(int i=0; i<rows; i++)
 			memcpy(&new->pixArray_overlay, &p->pixArray_overlay, sizeof(rows*columns*sizeof(rgba)));
 	}
 	return new;

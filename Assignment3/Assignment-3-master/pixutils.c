@@ -145,19 +145,20 @@ int pixMap_rotate(pixMap *p,float theta){
  pixMap_destroy(&oldPixMap);
  return 0;
 }
-
+*/
 pixMap *pixMap_copy(pixMap *p){
 	pixMap *new=pixMap_init(p->arrayType);
-	//allocate memory for new image of the same size a p->image and copy the image
+	//allocate memory for new image of the same size as p->image and copy the image
+	new->image = malloc(sizeof(p->image));
 	//allocate memory and copy the arrays. 
 	if (new->arrayType ==0){
-	 //insert code
+		 //insert code
 	}	
- else if (new->arrayType ==1){
-	 //insert code
+ 	else if (new->arrayType ==1){
+		 //insert code
 	}
 	else if (new->arrayType ==2){
-	 //insert code
+		//insert code
 	}
 	return new;
-}	*/
+}

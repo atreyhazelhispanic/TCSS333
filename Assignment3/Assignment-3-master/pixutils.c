@@ -17,10 +17,9 @@ void pixMap_destroy (pixMap **p){
 	if(!p)
  		fprintf(stderr, "None exist \n");
 
-	int columns = (**p).imageWidth;
 	int rows = (**p).imageHeight;
 
-	free(p.image);
+	free((**p).image);
 
  	switch((**p).arrayType){
  		case '0':
@@ -30,10 +29,16 @@ void pixMap_destroy (pixMap **p){
  			free(p);
  			break;
  		case '1':
-
+ 			for(int i=0; i<rows; i++){
+ 				free(pixArray_blocks[i]);
+ 			}
+ 			free(p);
  			break;
  		case '2':
-
+ 			for(int i=0; i<rows; i++){
+ 				free(pixArray_overlay);
+ 			}
+ 			free(p);
  			break;
  	}
 }

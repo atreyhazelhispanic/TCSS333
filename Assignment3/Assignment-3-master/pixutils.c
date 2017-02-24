@@ -103,7 +103,7 @@ int pixMap_write(pixMap *p,char *filename){
    		//have to copy each row of the array into the corresponding row of the image	
 		p -> image = malloc(rows*sizeof(rgba[MAXWIDTH]));
 		for(int i=0; i<rows; i++){
-			memcpy(&(p->image)[i], &(pixArray_arrays)[i]; columns*sizeof(rgba));
+			memcpy(&(p->image)[i], &(p->pixArray_arrays)[i], columns*sizeof(rgba));
 		}
 	}	
 	else if(p->arrayType == 1){

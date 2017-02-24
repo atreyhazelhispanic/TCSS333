@@ -148,17 +148,22 @@ int pixMap_rotate(pixMap *p,float theta){
 */
 pixMap *pixMap_copy(pixMap *p){
 	pixMap *new=pixMap_init(p->arrayType);
+	int rows = p->imageHeight;
+	int columns = p->imageWidth;
 	//allocate memory for new image of the same size as p->image and copy the image
 	new->image = malloc(sizeof(p->image));
 	//allocate memory and copy the arrays. 
-	if (new->arrayType ==0){
-		 //insert code
+	if (new->arrayType == 0){
+		for(int i=0; i<rows; i++)
+			memcpy(&new->pixArray_arrays[i], &p->pixArray_arrays[i], sizeof(rows*rgba[MAXWIDTH]));
 	}	
- 	else if (new->arrayType ==1){
-		 //insert code
+ 	else if (new->arrayType == 1){
+		for(int i=0; i<rows; i++)
+			memcpy(&new->pixArray_blocks, &p->pixArray_blocks, sizeof(rows*columns*sizeof(rgba)));
 	}
-	else if (new->arrayType ==2){
-		//insert code
+	else if (new->arrayType == 2){
+		for(int i=0; i<rows, i++)
+			memcpy(&new->pixArray_overlay, &p->pixArray_overlay, sizeof(rows*columns*sizeof(rgba)));
 	}
 	return new;
 }

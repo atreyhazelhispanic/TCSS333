@@ -20,9 +20,14 @@ void pixMap_destroy (pixMap **p){
 	int columns = (**p).imageWidth;
 	int rows = (**p).imageHeight;
 
+	free((**p).image);
+
  	switch((**p).arrayType){
  		case '0':
- 			
+ 			for(int i=0; i<rows; i++){
+ 				free((**p).pixArray_arrays[i]);
+ 			}
+ 			free(p);
  			break;
  		case '1':
 
@@ -34,7 +39,6 @@ void pixMap_destroy (pixMap **p){
 }
 
 pixMap *pixMap_read(char *filename,unsigned char arrayType){
-	printf("%c\n\n\n\n\n\n\n\n\n", arrayType);
  	//library call reads in the image into p->image and sets the width and height
 	pixMap *p=pixMap_init(arrayType);
  	int error;

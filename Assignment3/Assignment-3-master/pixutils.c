@@ -57,35 +57,28 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
  	//allocate the 2-D rgba arrays
 	// p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(rgba));
  	//p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(rgba));
-
 	if (arrayType == 0){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		p -> pixArray_arrays = malloc(rows*sizeof(rgba[MAXWIDTH]));
-
-		for(int i=0; i<rows; i++){
+		for(int i=0; i<rows; i++)
 			memcpy(&(p->pixArray_arrays)[i], &(p->image)[i], columns*sizeof(rgba));
-		}
 	}	
 	else if (arrayType == 1){
 		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
 		//use a loop allocate a block of memory for each row
 		//copy each row of the image into the newly allocated block
 		p -> pixArray_blocks = malloc(rows*columns*sizeof(rgba));
-
-		for(int i=0; i<rows; i++){
+		for(int i=0; i<rows; i++)
 			memcpy(&p->pixArray_blocks[i], &p->image[i], sizeof(rgba));
-		}
  	}
 	else if (arrayType == 2){
   		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
   		//set the first pointer to the start of p->image
   		//each subsequent pointer is the previous pointer + p->imageWidth
   		p -> pixArray_overlay = malloc(rows*columns*sizeof(rgba));
-  		
-  		for(int i=0; i<rows; i++){
+  		for(int i=0; i<rows; i++)
   			memcpy(&p->pixArray_overlay[i], &p->image[i], sizeof(rgba));
-  		}
 	}
 	else{
 		return 0;

@@ -69,7 +69,7 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
 		//use a loop allocate a block of memory for each row
 		//copy each row of the image into the newly allocated block
-		p -> pixArray_blocks = malloc(rows*columns*sizeof(rgba));
+		p -> pixArray_blocks = malloc(rows*MAXWIDTH*sizeof(rgba));
 		for(int i=0; i<rows; i++)
 			memcpy(&p->pixArray_blocks[i], &p->image[i], columns*sizeof(rgba));
  	}
@@ -77,9 +77,9 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers
   		//set the first pointer to the start of p->image
   		//each subsequent pointer is the previous pointer + p->imageWidth
-  		p -> pixArray_overlay = malloc(rows*columns*sizeof(rgba));
+  		p -> pixArray_overlay = malloc(rows*sizeof(rgba));
   		for(int i=0; i<rows; i++)
-  			memcpy(&p->pixArray_overlay[i], &p->image[i], columns*sizeof(rgba));
+  			p->pixArray_overlay[i] = p->image[i];
 	}
 	else{
 		return 0;
@@ -97,7 +97,7 @@ int pixMap_write(pixMap *p,char *filename){
    		//have to copy each row of the array into the corresponding row of the image	
 		p -> image = malloc(rows*sizeof(rgba[MAXWIDTH]));
 		for(int i=0; i<rows; i++)
-			memcpy(&(p->image)[i], &(p->pixArray_arrays)[i], columns*sizeof(rgba));
+			memcpy(&p->image[i], &p->pixArray_arrays[i], columns*sizeof(rgba));
 	}	
 	else if(p->arrayType == 1){
    		//have to copy each row of the array into the corresponding row of the image

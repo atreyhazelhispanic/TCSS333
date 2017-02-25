@@ -19,7 +19,7 @@ void pixMap_destroy (pixMap **p){
 
 	int rows = (**p).imageHeight;
 
-	free(*(*p)->image);
+	free((**p).image);
 
  	switch((**p).arrayType){
  		case '0':
@@ -55,14 +55,15 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
 	int columns = p -> imageWidth;
 	int rows = p -> imageHeight;
  	//allocate the 2-D rgba arrays
-	// p -> pixArray_blocks = (rgba **)malloc(MAXWIDTH*sizeof(rgba));
- 	//p -> pixArray_overlay = (rgba **)malloc(MAXWIDTH*sizeof(rgba));
+	p->pixArray_blocks = malloc(rows*sizeof(rgba));
+	p->pixArray_overlay = malloc(rows*sizeof(rgba));
+
 	if (arrayType == 0){
   		//can only allocate for the number of rows - each row will be an array of MAXWIDTH
   		//copy each row of the image into each row
 		p -> pixArray_arrays = malloc(rows*sizeof(rgba[MAXWIDTH]));
 		for(int i=0; i<rows; i++)
-			memcpy(&(p->pixArray_arrays)[i], &(p->image)[i], columns*sizeof(rgba));
+			memcpy(p->pixArray_arrays[i], p->image[i], columns*sizeof(rgba));
 	}	
 	else if (arrayType == 1){
 		//allocate a block of memory (dynamic array of p->imageHeight) to store the pointers

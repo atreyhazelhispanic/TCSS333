@@ -36,7 +36,7 @@ void pixMap_destroy (pixMap **p){
  			break;
  		case '2':
  			for(int i=0; i<rows; i++){
- 				free((**p).pixArray_overlay);
+ 				free((**p).pixArray_overlay[i]);
  			}
  			free(p);
  			break;
@@ -101,7 +101,7 @@ int pixMap_write(pixMap *p,char *filename){
 	}	
 	else if(p->arrayType == 1){
    		//have to copy each row of the array into the corresponding row of the image
-		p -> image = malloc(rows*columns*sizeof(rgba));
+		p -> image = malloc(rows*MAXWIDTH*sizeof(rgba));
 		for(int i=0; i<rows; i++)
 			memcpy(&p->image[i], &p->pixArray_blocks[i], columns*sizeof(rgba));
 	}
@@ -153,18 +153,24 @@ pixMap *pixMap_copy(pixMap *p){
 	int columns = p->imageWidth;
 	//allocate memory for new image of the same size as p->image and copy the image
 	new->image = malloc(sizeof(p->image));
-	//allocate memory and copy the arrays. 
+	//allocate memory and copy the arrays.
+	new->pixArray_blocks = malloc(rows*sizeof(rgba));
+	new->pixArray_overlay = malloc(rows*sizeof(rgba));
+
 	if (new->arrayType == 0){
+		new -> image = malloc(rows*sizeof(rgba[MAXWIDTH]));
 		for(int i=0; i<rows; i++)
 			memcpy(&new->pixArray_arrays[i], &p->pixArray_arrays[i], sizeof(rows*sizeof(rgba[MAXWIDTH])));
 	}	
  	else if (new->arrayType == 1){
+ 		new -> pixArray_blocks = malloc(rows*MAXWIDTH*sizeof(rgba));
 		for(int i=0; i<rows; i++)
-			memcpy(&new->pixArray_blocks, &p->pixArray_blocks, sizeof(rows*columns*sizeof(rgba)));
+			memcpy(&new->pixArray_blocks[i], &p->pixArray_blocks[i], sizeof(rows*columns*sizeof(rgba)));
 	}
 	else if (new->arrayType == 2){
+		p -> pixArray_overlay = malloc(rows*sizeof(rgba));
 		for(int i=0; i<rows; i++)
-			memcpy(&new->pixArray_overlay, &p->pixArray_overlay, sizeof(rows*columns*sizeof(rgba)));
+			memcpy(&new->pixArray_overlay[i], &p->pixArray_overlay[i], sizeof(rows*columns*sizeof(rgba)));
 	}
 	return new;
 }

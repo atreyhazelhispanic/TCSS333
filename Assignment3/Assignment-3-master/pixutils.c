@@ -79,6 +79,8 @@ pixMap *pixMap_read(char *filename,unsigned char arrayType){
   		//each subsequent pointer is the previous pointer + p->imageWidth
   		p -> pixArray_overlay = malloc(rows*sizeof(rgba));
   		for(int i=0; i<rows; i++)
+  			unsigned char test = p->pixArray_overlay[i];
+  			unsigned char test2 = p->image[i];
   			p->pixArray_overlay[i] = p->image[i];
 	}
 	else{

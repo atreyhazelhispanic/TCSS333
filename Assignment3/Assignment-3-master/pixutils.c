@@ -1,7 +1,5 @@
 #include "pixutils.h"
 
-#define MAXWIDTH 256
-
 //private methods -> make static
 static pixMap* pixMap_init(unsigned char arrayType);
 static pixMap* pixMap_copy(pixMap *p);

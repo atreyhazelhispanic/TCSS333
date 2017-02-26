@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
       i+=2;
     }
     else if(! strcmp(argv[i],"-r")){
-      theta=degreesToRadians(atoi(argv[i+1]));
+      theta=atof(argv[i+1]);
       i+=2;
     }
     else if(! strcmp(argv[i],"-t")){

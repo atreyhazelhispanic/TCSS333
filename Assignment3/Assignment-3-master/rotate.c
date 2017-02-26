@@ -18,8 +18,12 @@ int main(int argc, char *argv[]){
       outputfile=argv[i+1];
       i+=2;
     }
-    else if(! strcmp(argv[i],"r")){
+    else if(! strcmp(argv[i],"-r")){
       theta=degreesToRadians(atoi(argv[i+1]));
+      i+=2;
+    }
+    else if(! strcmp(argv[i],"-t")){
+      arrayType=atoi(argv[i+1]);
       i+=2;
     }
     else{

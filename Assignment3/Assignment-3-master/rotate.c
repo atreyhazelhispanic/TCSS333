@@ -43,9 +43,3 @@ int main(int argc, char *argv[]){
   pixMap_destroy(&p);
   return 0;
 }
-
-/*90 DEGREE rotation example: 
-for(i=0; i<ROWS; i++){
-  for(j=0; j<COLS; j++)
-    out_image[j][COLS-1-i] = the_image[i][j];
-}  */

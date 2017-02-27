@@ -14,15 +14,15 @@ int main(int argc, char *argv[]){
 		}	
     //set up the rest of command-line parsing for the flags -o -r -t
     //to read in the outputfile, the degrees (theta) to rotate the image (float), and the arrayType    
-    else if(! strcmp(argv[i],"-o")){
+    else if(! strcmp(argv[i],"-o")==0){
       outputfile=argv[i+1];
       i+=2;
     }
-    else if(! strcmp(argv[i],"-r")){
+    else if(! strcmp(argv[i],"-r")==0){
       theta=atof(argv[i+1]);
       i+=2;
     }
-    else if(! strcmp(argv[i],"-t")){
+    else if(! strcmp(argv[i],"-t")==0){
       arrayType=atoi(argv[i+1]);
       i+=2;
     }

@@ -106,7 +106,7 @@ int pixMap_write(pixMap *p,char *filename){
 	else if(p->arrayType == 2){
 		p -> image = malloc(rows*columns*sizeof(rgba));
 		for(int i=0; i<rows; i++)
-			memcpy(&p->image[i], &p->pixArray_overlay, columns*sizeof(rgba));
+			memcpy(&p->image[i], &p->pixArray_overlay[i], columns*sizeof(rgba));
 	}
 	//library call to write the image out 
 	 if(lodepng_encode32_file(filename, p->image, p->imageWidth, p->imageHeight)){

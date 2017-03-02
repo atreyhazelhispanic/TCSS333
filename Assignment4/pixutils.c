@@ -124,8 +124,23 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 
 //define plugin functions
 
-static void rotate(pixMap *p, pixMap *oldPixMap,int y, int x,void *data){
-	
+static void rotate(pixMap *p, pixMap *oldPixMap, int i, int j, void *data){
+	float *sc = (float*) data;
+	const float ox = p-> imageWidth/2.0f;
+	const float oy = p->imageHeight/2.0f;
+	const float s = sc[0];
+	const float c = sc[1];
+	const int y = i;
+	const int x = j;
+	float rotx = c*(x-ox) - s*(oy-y) + ox;
+	float roty = -(s*(x-ox) + c*(oy-y) - oy);
+	int rotj = rotx + .5;
+	int roti = roty + .5;
+	if(roti >=0 && roti <oldPixMap->imageHeight && rotj >=0 && rotj <oldPixMap->imageWidth){
+		memcpy(p->pixArray_overlay[y]+x, oldPixMap->pixArray_overlay[roti]+rotj, sizeof(rgba));
+	}else{
+		memset(p->pixArray_overlay[y]+x, 0, sizeof(rgba));
+	}
 }
 
 static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){

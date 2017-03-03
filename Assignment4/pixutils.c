@@ -102,14 +102,14 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	
 	int i=*iptr;
 	if(!strcmp(argv[i]+2,"rotate")){
-		//code goes here
+		new->function = rotate;
+		new->data = atof(*iptr[i]+1);
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	//code goes here
 		*iptr=i+10;	// needs to enter 9 values
-
   		return new;
 	}
 	if(!strcmp(argv[i]+2,"flipHorizontal")){

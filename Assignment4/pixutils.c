@@ -90,7 +90,8 @@ return 0;
 }	 
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
-	int columns = (**plug).data.imageWidth;
+	if((**plug).data) free((**plug).data);
+	if*(*(*plug)) free(*(*plug));
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){
@@ -108,6 +109,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	//code goes here
 		*iptr=i+10;	// needs to enter 9 values
+
   		return new;
 	}
 	if(!strcmp(argv[i]+2,"flipHorizontal")){

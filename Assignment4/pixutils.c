@@ -90,7 +90,7 @@ return 0;
 }	 
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
-	int columns = plug->imageWidth;
+	int columns = (**plug)->imageWidth;
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){

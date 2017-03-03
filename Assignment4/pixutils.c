@@ -79,7 +79,7 @@ BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initializ
 if(!bmp16) return 1;
  
 
-	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
+//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
 	
  //However pixMap and BMP16_map are "upside down" relative to each other
  //need to flip one of the the row indices when copying
@@ -90,7 +90,7 @@ return 0;
 }	 
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
-	int columns = (**plug).(pixMap*)data.imageWidth;
+	int columns = (**plug).data.imageWidth;
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){

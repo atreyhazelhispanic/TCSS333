@@ -155,5 +155,5 @@ static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	memcpy(p->pixArray_overlay[i]+j, oldPixMap->pixArray_overlay[oldPixMap->imageHeight-1-i]+j, sizeof(rgba));
 }	 
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
-	memcpy(p->pixArray_overlay[i]+j, p->pixArray_overlay[i]+imageWidth-1-j, sizeof(rgba));
+	memcpy(p->pixArray_overlay[i]+j, p->pixArray_overlay[i]+oldPixMap->imageWidth-1-j, sizeof(rgba));
 }

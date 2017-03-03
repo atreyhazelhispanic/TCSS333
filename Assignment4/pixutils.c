@@ -104,13 +104,13 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
 		*iptr=i+1;
-		new->data = *iptr;
+		new->data = (void*) iptr;
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	//code goes here
-		*iptr=i+10;	// needs to enter 9 values
+		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}
 	if(!strcmp(argv[i]+2,"flipHorizontal")){
@@ -154,8 +154,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
 }
 
-//very simple functions - does not use the data pointer - good place to start
- 
+//very simple functions - does not use the data pointer - good place to start 
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	memcpy(p->pixArray_overlay[i]+j, oldPixMap->pixArray_overlay[oldPixMap->imageHeight-1-i]+j, sizeof(rgba));
 }	 

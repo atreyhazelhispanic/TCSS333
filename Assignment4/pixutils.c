@@ -21,32 +21,32 @@ void pixMap_destroy (pixMap **p){
 	if(!p || !*p) return;
 	pixMap *this_p=*p;
 	if(this_p->pixArray_overlay)
-	 free(this_p->pixArray_overlay);
+		free(this_p->pixArray_overlay);
 	if(this_p->image)free(this_p->image);	
-	free(this_p);
+		free(this_p);
 	this_p=0;
 }
 	
 pixMap *pixMap_read(char *filename){
 	pixMap *p=pixMap_init();
- int error;
- if((error=lodepng_decode32_file(&(p->image), &(p->imageWidth), &(p->imageHeight),filename))){
-  fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
-  return 0;
+ 	int error;
+	if((error=lodepng_decode32_file(&(p->image), &(p->imageWidth), &(p->imageHeight),filename))){
+ 		fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
+  		return 0;
 	}
 	p->pixArray_overlay=malloc(p->imageHeight*sizeof(rgba*));
 	p->pixArray_overlay[0]=(rgba*) p->image;
 	for(int i=1;i<p->imageHeight;i++){
-  p->pixArray_overlay[i]=p->pixArray_overlay[i-1]+p->imageWidth;
+  		p->pixArray_overlay[i]=p->pixArray_overlay[i-1]+p->imageWidth;
 	}			
 	return p;
 }
 int pixMap_write(pixMap *p,char *filename){
 	int error=0;
- if(lodepng_encode32_file(filename, p->image, p->imageWidth, p->imageHeight)){
-  fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
-  return 1;
-	}
+if(lodepng_encode32_file(filename, p->image, p->imageWidth, p->imageHeight)){
+  	fprintf(stderr,"error %u: %s\n", error, lodepng_error_text(error));
+  	return 1;
+}
 	return 0;
 }	 
 
@@ -58,7 +58,7 @@ pixMap *pixMap_copy(pixMap *p){
 	new->pixArray_overlay=malloc(new->imageHeight*sizeof(void*));
 	new->pixArray_overlay[0]=(rgba*) new->image;
 	for(int i=1;i<new->imageHeight;i++){
-  new->pixArray_overlay[i]=new->pixArray_overlay[i-1]+new->imageWidth;
+  		new->pixArray_overlay[i]=new->pixArray_overlay[i-1]+new->imageWidth;
 	}	
 	return new;
 }
@@ -67,7 +67,7 @@ pixMap *pixMap_copy(pixMap *p){
 void pixMap_apply_plugin(pixMap *p,plugin *plug){
 	pixMap *copy=pixMap_copy(p);
 	for(int i=0;i<p->imageHeight;i++){
-	 for(int j=0;j<p->imageWidth;j++){
+		for(int j=0;j<p->imageWidth;j++){
 			plug->function(p,copy,i,j,plug->data);
 		}
 	}
@@ -75,8 +75,8 @@ void pixMap_apply_plugin(pixMap *p,plugin *plug){
 }
 
 int pixMap_write_bmp16(pixMap *p,char *filename){
- BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
- if(!bmp16) return 1;
+BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
+if(!bmp16) return 1;
  
 
 	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
@@ -84,9 +84,9 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  //However pixMap and BMP16_map are "upside down" relative to each other
  //need to flip one of the the row indices when copying
 
- BMP16map_write(bmp16,filename);
- BMP16map_destroy(&bmp16);
- return 0;
+BMP16map_write(bmp16,filename);
+BMP16map_destroy(&bmp16);
+return 0;
 }	 
 void plugin_destroy(plugin **plug){
  //free the allocated memory and set *plug to zero (NULL)	
@@ -105,19 +105,19 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 		return new;	
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
-				//code goes here
+	  	//code goes here
 		*iptr=i+10;	
-  return new;
+  	return new;
 	}
 	if(!strcmp(argv[i]+2,"flipHorizontal")){
 			//code goes here	
-  *iptr=i+1;
-  return new;
+  	*iptr=i+1;
+  	return new;
 	}
 	if(!strcmp(argv[i]+2,"flipVertical")){
 		//code goes here
-  *iptr=i+1;
-  return new;
+  	*iptr=i+1;
+  	return new;
 	}		
 	return(0);
 }	
@@ -152,7 +152,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 //very simple functions - does not use the data pointer - good place to start
  
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
- //reverse the pixels vertically - can be done in one line		
+	memcpy(&p[i]+j, &oldPixMap[oldPixMap->imageHeight-1]+j, sizeof(rgba));
 }	 
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
  //reverse the pixels horizontally - can be done in one line

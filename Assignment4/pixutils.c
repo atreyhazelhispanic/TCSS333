@@ -101,23 +101,24 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	int i=*iptr;
 	if(!strcmp(argv[i]+2,"rotate")){
 		//code goes here
-		*iptr=i+2;
+		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	//code goes here
-		*iptr=i+10;	
-  	return new;
+		*iptr=i+10;	// needs to enter 9 values
+  		return new;
 	}
 	if(!strcmp(argv[i]+2,"flipHorizontal")){
-			//code goes here	
-  	*iptr=i+1;
-  	return new;
+		//We don't use the *data pointer, so no value/parameter expected
+		new->function = flipHorizontal;
+  		*iptr=i+1;
+  		return new;
 	}
 	if(!strcmp(argv[i]+2,"flipVertical")){
-		//code goes here
-  	*iptr=i+1;
-  	return new;
+		new->function = flipVertical;
+  		*iptr=i+1; //no paramerters needed moves 1 past
+  		return new;
 	}		
 	return(0);
 }	
@@ -139,7 +140,7 @@ static void rotate(pixMap *p, pixMap *oldPixMap, int i, int j, void *data){
 	if(roti >=0 && roti <oldPixMap->imageHeight && rotj >=0 && rotj <oldPixMap->imageWidth){
 		memcpy(p->pixArray_overlay[y]+x, oldPixMap->pixArray_overlay[roti]+rotj, sizeof(rgba));
 	}else{
-		memset(p->pixArray_overlay[y]+x, 0, sizeof(rgba));
+		memset(p->pixArray_overlay[y]+x, 0, sizeof(rgba)); // this sets the values at rows y -> x to 0
 	}
 }
 

@@ -91,7 +91,7 @@ return 0;
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
 	if((**plug).data) free((**plug).data);
-	if(**plug) free(**plug);
+	if(*plug) free(*plug);
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){

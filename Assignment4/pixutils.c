@@ -152,8 +152,8 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 //very simple functions - does not use the data pointer - good place to start
  
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
-	memcpy(&p[i]+j, &oldPixMap[oldPixMap->imageHeight-1-i]+j, sizeof(rgba));
+	memcpy(p->pixArray_overlay[i]+j, oldPixMap->pixArray_overlay[oldPixMap->imageHeight-1-i]+j, sizeof(rgba));
 }	 
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
-	memcpy(&p[i]+j, &oldPixMap[i]+oldPixMap->imageWidth-1-j, sizeof(rgba));
+	memcpy(p->pixArray_overlay[i]+j, p->pixArray_overlay[i]+imageWidth-1-j, sizeof(rgba));
 }

@@ -75,18 +75,17 @@ void pixMap_apply_plugin(pixMap *p,plugin *plug){
 }
 
 int pixMap_write_bmp16(pixMap *p,char *filename){
-BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
-if(!bmp16) return 1;
+	BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
+	if(!bmp16) return 1;
  
 
-//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
-	
- //However pixMap and BMP16_map are "upside down" relative to each other
- //need to flip one of the the row indices when copying
+	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
+	//However pixMap and BMP16_map are "upside down" relative to each other
+ 	//need to flip one of the the row indices when copying
 
-BMP16map_write(bmp16,filename);
-BMP16map_destroy(&bmp16);
-return 0;
+	BMP16map_write(bmp16,filename);
+	BMP16map_destroy(&bmp16);
+	return 0;
 }	 
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
@@ -105,10 +104,10 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 		new->function = rotate;
 		float theta = atof(argv[i+1]);
 		new->data = malloc(sizeof(float));
-		memcpy(new->data; &theta, sizeof(float));
+		memcpy(new->data, &theta, sizeof(float));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
-	}		
+	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	//code goes here
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
@@ -150,7 +149,7 @@ static void rotate(pixMap *p, pixMap *oldPixMap, int i, int j, void *data){
 }
 
 static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
-	//implement algorithm givne in https://en.wikipedia.org/wiki/Kernel_(image_processing)
+	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
 }
@@ -162,4 +161,3 @@ static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	memcpy(p->pixArray_overlay[i]+j, p->pixArray_overlay[i]+oldPixMap->imageWidth-1-j, sizeof(rgba));
 }
-

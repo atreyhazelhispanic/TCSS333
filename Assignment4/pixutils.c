@@ -10,7 +10,6 @@ static void rotate(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
-static float theta = 0;
 
 static pixMap* pixMap_init(){
 	pixMap *p=malloc(sizeof(pixMap));
@@ -78,8 +77,6 @@ void pixMap_apply_plugin(pixMap *p,plugin *plug){
 int pixMap_write_bmp16(pixMap *p,char *filename){
 	BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
 	if(!bmp16) return 1;
- 
-
 	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
 	//However pixMap and BMP16_map are "upside down" relative to each other
  	//need to flip one of the the row indices when copying
@@ -103,9 +100,12 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	int i=*iptr;
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
-		theta = atof(argv[i+1]);
 		new->data = malloc(2*sizeof(float));
-		memcpy(new->data, &theta, sizeof(float));
+		float theta = atof(argv[i+1]);
+		((float *) new->data)[0] = sin(degreesToRadians(-theta));
+		((float *) new->data)[1] = cos(degreesToRadians(-theta));
+
+		//memcpy(new->data, &theta, sizeof(float));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
@@ -116,7 +116,6 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	  	for(int j=0; j<9; j++){
 	  		((int *) new->data)[j] = atoi(argv[i+(j+1)]);
 	  	}
-
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}
@@ -140,8 +139,6 @@ static void rotate(pixMap *p, pixMap *oldPixMap, int i, int j, void *data){
 	float *sc = (float*) data;
 	const float ox = p-> imageWidth/2.0f;
 	const float oy = p->imageHeight/2.0f;
-	sc[0] = sin(degreesToRadians(-theta));
-	sc[1] = cos(degreesToRadians(-theta));
 	const float s = sc[0];
 	const float c = sc[1];
 	const int y = i;
@@ -162,6 +159,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
 	int mask[3][3] = {{0}};
+	mask = malloc(sizeof(int)*9);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

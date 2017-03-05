@@ -103,7 +103,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	int i=*iptr;
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
-		theta = atof(argv[i+3]);
+		theta = atof(argv[i+1]);
 		new->data = malloc(2*sizeof(float));
 		memcpy(new->data, &theta, sizeof(float));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it

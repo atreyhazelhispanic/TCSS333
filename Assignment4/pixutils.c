@@ -161,7 +161,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
-	
+	int mask[3][3] = {{0}};
 }
 
 //very simple functions - does not use the data pointer - good place to start 

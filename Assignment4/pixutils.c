@@ -10,6 +10,7 @@ static void rotate(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
 static void flipHorizontal(pixMap *p, pixMap *oldPixMap,int i, int j,void *data);
+static float theta = 0;
 
 static pixMap* pixMap_init(){
 	pixMap *p=malloc(sizeof(pixMap));
@@ -102,12 +103,9 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	int i=*iptr;
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
-		float theta = atof(argv[i+1]);
+		theta = atof(argv[i+3]);
 		new->data = malloc(2*sizeof(float));
 		memcpy(new->data, &theta, sizeof(float));
-		float *sc = (float*) new->data;
-		sc[0] = sin(degreesToRadians(-theta));
-		sc[1] = cos(degreesToRadians(-theta));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
@@ -138,6 +136,8 @@ static void rotate(pixMap *p, pixMap *oldPixMap, int i, int j, void *data){
 	float *sc = (float*) data;
 	const float ox = p-> imageWidth/2.0f;
 	const float oy = p->imageHeight/2.0f;
+	sc[0] = sin(degreesToRadians(-theta));
+	sc[1] = cos(degreesToRadians(-theta));
 	const float s = sc[0];
 	const float c = sc[1];
 	const int y = i;

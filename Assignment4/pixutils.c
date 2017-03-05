@@ -111,7 +111,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	new->function = convolution;
-	  	new->data = malloc(sizeof(int)*9);
+	  	new->data = malloc(9*sizeof(int));
 
 	  	for(int j=0; j<9; j++){
 	  		((int *) new->data)[j] = atoi(argv[i+(j+1)]);
@@ -158,7 +158,18 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
-	p = malloc(sizeof(int)*9);
+	int **kernal = malloc(9*sizeof(int));
+	for(int i=0; i<9; i++){
+
+	}
+
+	for(int i=0; i<(oldPixMap->imageHeight); i++){
+		for(int j=0; j<(oldPixMap->imageWidth); j++){
+			int accumulator = 0;
+
+
+		}
+	}
 }
 
 //very simple functions - does not use the data pointer - good place to start 

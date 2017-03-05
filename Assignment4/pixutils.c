@@ -105,8 +105,9 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 		float theta = atof(argv[i+1]);
 		new->data = malloc(2*sizeof(float));
 		memcpy(new->data, &theta, sizeof(float));
-		new->data[0] = (float) sin(degreesToRadians(-theta));
-		new->data[1] = (float) cos(degreesToRadians(-theta));
+		float *sc = (float*) new->data;
+		sc[0] = sin(degreesToRadians(-theta));
+		sc[1] = cos(degreesToRadians(-theta));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	

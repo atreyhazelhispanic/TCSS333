@@ -181,7 +181,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 				for(int kernalX=0; kernalX<n; kernalX++){
 					int theX = (x-padding+kernalX+width)%width;
   					int theY = (y-padding+kernalY+height)%height;
-  					p->pixArray_overlay[theY*width+theX].r;
+  					(*(rgba*) p->pixArray_overlay)[theY*width+theX]
 				}
 			}
 

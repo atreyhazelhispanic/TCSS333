@@ -179,14 +179,19 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 			//int accumulator = 0;
 			for(int kernalY=0; kernalY<n; kernalY++){
 				for(int kernalX=0; kernalX<n; kernalX++){
-					int theX = (x-padding+kernalX+width)%width;
+					int theKern = kernal[kernalY][kernalX];
+					int theX = (x-padding+kernalX+width)%width;   //wraopping
   					int theY = (y-padding+kernalY+height)%height; //wrapping for edge cases
   					rgba theP = ((rgba*) p->pixArray_overlay)[theY*width+theX];
   					rgba theOld = ((rgba*) oldPixMap->pixArray_overlay)[theY*width+theX];
+
+  					theP.r += (theOld.r*theKern)/normalize;
+  					theP.g += (theOld.g*theKern)/normalize;
+  					theP.b += (theOld.b*theKern)/normalize;
+  					theP.a += (theOld.a*theKern)/normalize;
 				}
 			}
-
-
+			//Do I need to truncate for values <0 && >255 ????
 		}
 	}
 }

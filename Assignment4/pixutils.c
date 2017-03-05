@@ -103,13 +103,17 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
 		float theta = atof(argv[i+1]);
-		new->data = malloc(sizeof(float));
+		new->data = malloc(2*sizeof(float));
 		memcpy(new->data, &theta, sizeof(float));
+		new->data[0] = sin(degreesToRadians(-theta));
+		new->data[1] = cos(degreesToRadians(-theta));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
-	  	//code goes here
+	  	new->function = convolution;
+	  	new->data = malloc(sizeof(int)*9);
+	 	
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}
@@ -152,6 +156,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
+
 }
 
 //very simple functions - does not use the data pointer - good place to start 

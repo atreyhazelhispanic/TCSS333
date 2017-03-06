@@ -163,7 +163,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int normalize = 0; //Divide each element in the kernel by this sum
 
 	int **kernel = malloc(n*n*sizeof(int));
-	// int counter = 0;
+	int counter = 0;
 	// // for(int i=0; i<n; i++){
 	// // 	for(int j=0; j<n; j++){
 	// // 		// memcpy(kernel[i]+j, &((int *)data)[counter], sizeof(int));
@@ -193,10 +193,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
  // //  			theP.a += (theOld.a*theKern)/normalize;
 	// // 	}
 	// // }
-	// for(int i=0; i<n; i++){ // free the memory for the kernel
-	// 	if(kernel[i]) free(kernel[i]);
-	// }
-	// if(kernel) free(kernel);
+	for(int i=0; i<n; i++){ // free the memory for the kernel
+		if(kernel[i]) free(kernel[i]);
+	}
+	if(kernel) free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

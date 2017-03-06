@@ -160,9 +160,9 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int padding = n/2;
 	int width = oldPixMap->imageWidth;
 	int height = oldPixMap->imageHeight;
-	// int normalize = 0; //Divide each element in the kernel by this sum
+	int normalize = 0; //Divide each element in the kernel by this sum
 
-	// int **kernel = malloc(n*n*sizeof(int));
+	int **kernel = malloc(n*n*sizeof(int));
 	// int counter = 0;
 	// // for(int i=0; i<n; i++){
 	// // 	for(int j=0; j<n; j++){

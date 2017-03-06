@@ -113,8 +113,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	  	new->data = (int *)malloc(9*sizeof(int));
 
 	  	for(int j=0; j<9; j++){
-	  		int insert = atoi(argv[i+1+j]);
-	  		((int *) new->data)[j] = 0;
+	  		((int *) new->data)[j] = atoi(argv[i+1+j]);
 	  	}
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;

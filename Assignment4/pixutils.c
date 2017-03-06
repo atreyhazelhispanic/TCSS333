@@ -111,7 +111,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	new->function = convolution;
-	  	new->data = malloc(9*9*sizeof(int));
+	  	new->data = malloc(9*sizeof(int));
 
 	  	for(int j=0; j<9; j++){
 	  		((int *) new->data)[j] = atoi(argv[i+(j+1)]);
@@ -162,23 +162,23 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int padding = n/2;
 	int width = oldPixMap->imageWidth;
 	int height = oldPixMap->imageHeight;
-	int normalize = 0; //Divide each element in the kernal by this sum
+	int normalize = 0; //Divide each element in the kernel by this sum
 
-	int **kernal = malloc(n*n*sizeof(int));
+	int **kernel = malloc(n*n*sizeof(int));
 	int counter = 0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
-			normalize = kernal[i][j] = ((int *)data)[counter];
+			normalize = kernel[i][j] = ((int *)data)[counter];
 			counter ++;
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
 	//int accumulator = 0;
-	for(int kernalY=0; kernalY<n; kernalY++){
-		for(int kernalX=0; kernalX<n; kernalX++){
-			int theKern = kernal[kernalY][kernalX];
-			int theX = (j-padding+kernalX+width)%width;  
-  			int theY = (i-padding+kernalY+height)%height; 
+	for(int kernelY=0; kernelY<n; kernelY++){
+		for(int kernelX=0; kernelX<n; kernelX++){
+			int theKern = kernel[kernelY][kernelX];
+			int theX = (j-padding+kernelX+width)%width;  
+  			int theY = (i-padding+kernelY+height)%height; 
   			rgba theP = ((rgba*) p->pixArray_overlay)[theY*width+theX];
   			rgba theOld = ((rgba*) oldPixMap->pixArray_overlay)[theY*width+theX];
 
@@ -194,6 +194,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
+	for(int i=0; i<n; i++){ // free the memory for the kernel
+		if(kernel[i]) free(kernel[i]);
+	}
+	if(kernel) free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

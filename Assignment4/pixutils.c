@@ -166,7 +166,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int counter = 0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
-			kernel[i]+j = ((int *)data)[counter];
+			memcpy(kernel[i]+j, &((int *)data)[counter], sizeof(int));
 			normalize += ((int *)data)[counter];
 			counter ++;
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel

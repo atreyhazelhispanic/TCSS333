@@ -158,7 +158,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
-	int n = 3; //for different kernel/mask just change n for NxN matrix
+	/*int n = 3; //for different kernel/mask just change n for NxN matrix
 	int padding = n/2;
 	int width = oldPixMap->imageWidth;
 	int height = oldPixMap->imageHeight;
@@ -198,7 +198,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 		if(kernel[i]) free(kernel[i]);
 	}
 	if(kernel) free(kernel);
-}
+}*/
 
 //very simple functions - does not use the data pointer - good place to start 
 static void flipVertical(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){

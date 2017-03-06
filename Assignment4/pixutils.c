@@ -174,7 +174,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//int accumulator = 0;
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
-			//int theKern = kernel[kernelY][kernelX];
+			int theKern = 0;//kernel[kernelY][kernelX];
 			int theX = (j-padding+kernelX+width)%width;  
   			int theY = (i-padding+kernelY+height)%height; 
   			rgba theP = ((rgba*) p->pixArray_overlay)[theY*width+theX];
@@ -192,10 +192,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
-	for(int i=0; i<n; i++){ // free the memory for the kernel
-		if(kernel[i]) free(kernel[i]);
-	}
-	if(kernel) free(kernel);
+	// for(int i=0; i<n; i++){ // free the memory for the kernel
+	// 	if(kernel[i]) free(kernel[i]);
+	// }
+	// if(kernel) free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

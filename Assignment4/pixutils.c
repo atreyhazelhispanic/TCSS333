@@ -162,14 +162,14 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int height = oldPixMap->imageHeight;
 	int normalize = 0; //Divide each element in the kernel by this sum
 
-	int **kernel = malloc(n*n*sizeof(int));
-	int counter = 0;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<n; j++){
-			normalize = kernel[i][j] = ((int *)data)[counter];
-			counter ++;
-		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
-	}
+	// int **kernel = malloc(n*n*sizeof(int));
+	// int counter = 0;
+	// for(int i=0; i<n; i++){
+	// 	for(int j=0; j<n; j++){
+	// 		normalize = kernel[i][j] = ((int *)data)[counter];
+	// 		counter ++;
+	// 	}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
+	// }
 	
 	//int accumulator = 0;
 	for(int kernelY=0; kernelY<n; kernelY++){

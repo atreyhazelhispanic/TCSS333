@@ -114,14 +114,14 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	  	new->data = (int *)malloc(9*sizeof(int));
 
 	  	((int *) new->data)[0] = atoi(argv[i+1]);
-	  	((int *) new->data)[1] = atoi(argv[i+2]);
-	  	((int *) new->data)[2] = atoi(argv[i+3]);
-	  	((int *) new->data)[3] = atoi(argv[i+4]);
-	  	((int *) new->data)[4] = atoi(argv[i+5]);
-	  	((int *) new->data)[5] = atoi(argv[i+6]);
-	  	((int *) new->data)[6] = atoi(argv[i+7]);
-	  	((int *) new->data)[7] = atoi(argv[i+8]);
-	  	((int *) new->data)[8] = atoi(argv[i+9]);
+	  	// ((int *) new->data)[1] = atoi(argv[i+2]);
+	  	// ((int *) new->data)[2] = atoi(argv[i+3]);
+	  	// ((int *) new->data)[3] = atoi(argv[i+4]);
+	  	// ((int *) new->data)[4] = atoi(argv[i+5]);
+	  	// ((int *) new->data)[5] = atoi(argv[i+6]);
+	  	// ((int *) new->data)[6] = atoi(argv[i+7]);
+	  	// ((int *) new->data)[7] = atoi(argv[i+8]);
+	  	// ((int *) new->data)[8] = atoi(argv[i+9]);
 
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;

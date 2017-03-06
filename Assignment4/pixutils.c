@@ -158,8 +158,8 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
 	int n = 3; //for different kernel/mask just change n for NxN matrix
 	int padding = n/2;
-	// int width = oldPixMap->imageWidth;
-	// int height = oldPixMap->imageHeight;
+	int width = oldPixMap->imageWidth;
+	int height = oldPixMap->imageHeight;
 	// int normalize = 0; //Divide each element in the kernel by this sum
 
 	// int **kernel = malloc(n*n*sizeof(int));

@@ -162,19 +162,19 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int height = oldPixMap->imageHeight;
 	int normalize = 0; //Divide each element in the kernel by this sum
 
-	// int **kernel = malloc(n*n*sizeof(int));
-	// int counter = 0;
-	// for(int i=0; i<n; i++){
-	// 	for(int j=0; j<n; j++){
-	// 		normalize = kernel[i][j] = ((int *)data)[counter];
-	// 		counter ++;
-	// 	}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
-	// }
+	int **kernel = malloc(n*n*sizeof(int));
+	int counter = 0;
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n; j++){
+			normalize = kernel[i][j] = ((int *)data)[counter];
+			counter ++;
+		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
+	}
 	
 	//int accumulator = 0;
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
-			int theKern = 0;//kernel[kernelY][kernelX];
+			int theKern = kernel[kernelY][kernelX];
 			int theX = (j-padding+kernelX+width)%width;  
   			int theY = (i-padding+kernelY+height)%height; 
   			rgba theP = ((rgba*) p->pixArray_overlay)[theY*width+theX];
@@ -186,16 +186,16 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			if(theY<0) theY=0;
   			if(theY>height-1) theY=height-1;
 
-  			theP.r += (theOld.r*theKern)/normalize;
-  			theP.g += (theOld.g*theKern)/normalize;
-  			theP.b += (theOld.b*theKern)/normalize;
-  			theP.a += (theOld.a*theKern)/normalize;
+  			// theP.r += (theOld.r*theKern)/normalize;
+  			// theP.g += (theOld.g*theKern)/normalize;
+  			// theP.b += (theOld.b*theKern)/normalize;
+  			// theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
-	// for(int i=0; i<n; i++){ // free the memory for the kernel
-	// 	if(kernel[i]) free(kernel[i]);
-	// }
-	// if(kernel) free(kernel);
+	for(int i=0; i<n; i++){ // free the memory for the kernel
+		if(kernel[i]) free(kernel[i]);
+	}
+	if(kernel) free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

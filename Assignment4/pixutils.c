@@ -101,7 +101,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	if(!strcmp(argv[i]+2,"rotate")){
 		new->function = rotate;
 		new->data = malloc(2*sizeof(float));
-		float theta = atof(argv[i+1]);
+		float theta = atof(argv[i]+3);
 		((float *) new->data)[0] = sin(degreesToRadians(-theta));
 		((float *) new->data)[1] = cos(degreesToRadians(-theta));
 

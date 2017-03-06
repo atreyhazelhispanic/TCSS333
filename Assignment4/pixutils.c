@@ -193,9 +193,6 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
  // //  			theP.a += (theOld.a*theKern)/normalize;
 	// // 	}
 	// // }
-	for(int i=0; i<n; i++){ // free the memory for the kernel
-		if(kernel[i]) free(kernel[i]);
-	}
 	if(kernel) free(kernel);
 }
 

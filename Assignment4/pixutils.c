@@ -104,8 +104,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 		float theta = atof(argv[i+1]);
 		((float *) new->data)[0] = sin(degreesToRadians(-theta));
 		((float *) new->data)[1] = cos(degreesToRadians(-theta));
-
-		//memcpy(new->data, &theta, sizeof(float));
+		memcpy(new->data, &theta, sizeof(float));
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
@@ -113,10 +112,10 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	  	new->function = convolution;
 	  	new->data = (int *)malloc(9*sizeof(int));
 
-	  	for(int insert=0; insert<9; insert++){
-	  		((int *) new->data)[insert] = 0;
+	  	for(int j=0; j<9; j++){
+	  		int insert = atoi(argv[i+1+j]);
+	  		((int *) new->data)[j] = 0;
 	  	}
-
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}

@@ -71,7 +71,7 @@ void pixMap_apply_plugin(pixMap *p,plugin *plug){
 			plug->function(p,copy,i,j,plug->data);
 		}
 	}
-	pixMap_destroy(&copy);	 
+	pixMap_destroy(&copy);
 }
 
 int pixMap_write_bmp16(pixMap *p,char *filename){

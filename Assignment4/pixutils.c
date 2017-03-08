@@ -192,7 +192,6 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   	// 		theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
-	if(kernel) free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

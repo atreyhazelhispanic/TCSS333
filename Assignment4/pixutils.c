@@ -174,10 +174,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
 			int theKern = kernel[kernelY][kernelX];
-			int theX = (j-padding+kernelX);  
-  			int theY = (i-padding+kernelY); 
-  			rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
-  			rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
+			// int theX = (j-padding+kernelX);  
+  	// 		int theY = (i-padding+kernelY); 
+  	// 		rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
+  	// 		rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
 
   			//extend for edges
   			if(theX<0) theX=0;
@@ -185,10 +185,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			if(theY<0) theY=0;
   			if(theY>height-1) theY=height-1;
 
-  			// theP.r += (theOld.r*theKern)/normalize;
-  			// theP.g += (theOld.g*theKern)/normalize;
-  			// theP.b += (theOld.b*theKern)/normalize;
-  			// theP.a += (theOld.a*theKern)/normalize;
+  			theP.r += (theOld.r*theKern)/normalize;
+  			theP.g += (theOld.g*theKern)/normalize;
+  			theP.b += (theOld.b*theKern)/normalize;
+  			theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
 	free(kernel);

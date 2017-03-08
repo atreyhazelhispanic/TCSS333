@@ -162,7 +162,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int height = oldPixMap->imageHeight;
 	int normalize = 0; //Divide each element in the kernel by this sum
 
-	int kernel[n][n] = ;
+	int kernel[n][n];
 	int counter = 0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){

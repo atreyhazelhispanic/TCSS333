@@ -171,13 +171,13 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
-	// for(int kernelY=0; kernelY<n; kernelY++){
-	// 	for(int kernelX=0; kernelX<n; kernelX++){
+	for(int kernelY=0; kernelY<n; kernelY++){
+		for(int kernelX=0; kernelX<n; kernelX++){
 			int theKern = kernel[kernelY][kernelX];
-			int theX = (j-padding+kernelX+width)%width;  
-  			int theY = (i-padding+kernelY+height)%height; 
-  			rgba theP = ((rgba*) p->pixArray_overlay)[theY*width+theX];
-  			rgba theOld = ((rgba*) oldPixMap->pixArray_overlay)[theY*width+theX];
+			int theX = (j-padding+kernelX);  
+  			int theY = (i-padding+kernelY); 
+  			rgba theP = ((rgba*) p->pixArray_overlay)[theX][theY];
+  			rgba theOld = ((rgba*) oldPixMap->pixArray_overlay)[theX][theY];
 
   			//extend for edges
   			if(theX<0) theX=0;
@@ -189,8 +189,8 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			theP.g += (theOld.g*theKern)/normalize;
   			theP.b += (theOld.b*theKern)/normalize;
   			theP.a += (theOld.a*theKern)/normalize;
-	// 	}
-	// }
+		}
+	}
 	free(kernel);
 }
 

@@ -113,9 +113,9 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	  	new->function = convolution;
 	  	new->data = (int *)malloc(9*sizeof(int));
 
-	  	for(int j=0; j<9; j++){
-	  		((int *) new->data)[j] = atoi(argv[i+1+j]);
-	  	}
+	  	// for(int j=0; j<9; j++){
+	  	// 	((int *) new->data)[j] = atoi(argv[i+1+j]);
+	  	// }
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}

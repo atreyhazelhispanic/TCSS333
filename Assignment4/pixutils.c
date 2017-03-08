@@ -87,7 +87,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
 }	 
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
-	if((**plug).data) free((**plug).data);
+	if((**plug).data) free(&(**plug).data);
 	if(*plug) free(&plug);
 }
 

@@ -185,10 +185,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			if(theY<0) theY=0;
   			if(theY>height-1) theY=height-1;
 
-  			theP.r += (theOld.r*theKern)/normalize;
-  			theP.g += (theOld.g*theKern)/normalize;
-  			theP.b += (theOld.b*theKern)/normalize;
-  			theP.a += (theOld.a*theKern)/normalize;
+  			// theP.r += (theOld.r*theKern)/normalize;
+  			// theP.g += (theOld.g*theKern)/normalize;
+  			// theP.b += (theOld.b*theKern)/normalize;
+  			// theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
 	free(kernel);

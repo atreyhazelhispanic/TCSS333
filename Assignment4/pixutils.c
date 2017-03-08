@@ -88,7 +88,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
 	if((*plug)->data) free((*plug)->data);
-	if(*plug) free(plug);
+	if(plug) free(plug);
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){
@@ -111,11 +111,11 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	new->function = convolution;
-	  	// new->data = malloc(9*sizeof(int));
+	  	new->data = malloc(9*sizeof(int));
 
-	  	for(int j=0; j<9; j++){
-	  		((int *) new->data)[j] = atoi(argv[i+1+j]);
-	  	}
+	  	// for(int j=0; j<9; j++){
+	  	// 	((int *) new->data)[j] = atoi(argv[i+1+j]);
+	  	// }
 		*iptr=i+10;	// needs to enter 9 integers that will be the 3x3 matrix
   		return new;
 	}

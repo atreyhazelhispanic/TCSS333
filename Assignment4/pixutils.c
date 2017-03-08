@@ -111,7 +111,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	new->function = convolution;
-	  	new->data = malloc(9*sizeof(int));
+	  	new->data = (int *)malloc(9*sizeof(int));
 
 	  	// for(int j=0; j<9; j++){
 	  	// 	((int *) new->data)[j] = atoi(argv[i+1+j]);

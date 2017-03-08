@@ -168,13 +168,13 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
 			normalize += kernel[i][j] = ((int *)data)[counter];
-			printf("%d \t %d \n", normalize, kernel[i][j]);
 			counter ++;
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
+			printf("%d\n", kernel[kernelY][kernelX]);
 			// int theKern = kernel[kernelY][kernelX];
 			// int theX = (j-padding+kernelX);  
   	// 		int theY = (i-padding+kernelY); 

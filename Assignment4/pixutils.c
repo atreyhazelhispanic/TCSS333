@@ -175,10 +175,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
 			int theKern = kernel[kernelY][kernelX];
-			int theX = (j-padding+kernelX);  
-  			int theY = (i-padding+kernelY); 
-  			rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
-  			rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
+			// int theX = (j-padding+kernelX);  
+  	// 		int theY = (i-padding+kernelY); 
+  	// 		rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
+  	// 		rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
 
   	// 		//extend for edges
   	// 		if(theX<0) theX=0;

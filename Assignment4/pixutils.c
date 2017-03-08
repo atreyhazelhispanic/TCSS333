@@ -172,7 +172,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
-	for(int kernelY=0; kernelY<n; kernelY++){
+	// for(int kernelY=0; kernelY<n; kernelY++){
 	// 	for(int kernelX=0; kernelX<n; kernelX++){
 	// 		int theKern = kernel[kernelY][kernelX];
 	// 		int theX = (j-padding+kernelX);  

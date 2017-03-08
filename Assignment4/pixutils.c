@@ -88,7 +88,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
 void plugin_destroy(plugin **plug){
  	//free the allocated memory and set *plug to zero (NULL)
 	if((**plug).data) free((**plug).data);
-	if(*plug) free(*plug);
+	if(*plug) free(&plug);
 }
 
 plugin *plugin_parse(char *argv[] ,int *iptr){
@@ -102,9 +102,10 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 		new->function = rotate;
 		new->data = malloc(2*sizeof(float));
 		float theta = atof(argv[i+1]);  
+		memcpy(new->data, &theta, sizeof(float));
 		((float *) new->data)[0] = sin(degreesToRadians(-theta));
 		((float *) new->data)[1] = cos(degreesToRadians(-theta));
-		memcpy(new->data, &theta, sizeof(float));
+		
 		*iptr=i+2;  //needs to enter 1 more value for a parameter/value then moves 2 to get past it
 		return new;	
 	}	
@@ -166,19 +167,19 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int counter = 0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
-			kernel[i][j] = normalize += ((int *)data)[counter];
+			normalize += kernel[i][j] = ((int *)data)[counter];
 			counter ++;
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
-	// for(int kernelY=0; kernelY<n; kernelY++){
+	for(int kernelY=0; kernelY<n; kernelY++){
 	// 	for(int kernelX=0; kernelX<n; kernelX++){
 	// 		int theKern = kernel[kernelY][kernelX];
 	// 		int theX = (j-padding+kernelX);  
  //  			int theY = (i-padding+kernelY); 
  //  			rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
  //  			rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
-  			
+
  //  			//extend for edges
  //  			if(theX<0) theX=0;
  //  			if(theX>width-1) theX=width-1;

@@ -157,20 +157,20 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	//implement algorithm given in https://en.wikipedia.org/wiki/Kernel_(image_processing)
 	//assume that the kernel is a 3x3 matrix of integers
 	//don't forget to normalize by dividing by the sum of all the elements in the matrix
-	// int n = 3; //for different kernel/mask just change n for NxN matrix
-	// int padding = n/2;
-	// int width = oldPixMap->imageWidth;
-	// int height = oldPixMap->imageHeight;
-	// int normalize = 0; //Divide each element in the kernel by this sum
+	int n = 3; //for different kernel/mask just change n for NxN matrix
+	int padding = n/2;
+	int width = oldPixMap->imageWidth;
+	int height = oldPixMap->imageHeight;
+	int normalize = 0; //Divide each element in the kernel by this sum
 
-	// int kernel[n][n];
-	// int counter = 0;
-	// for(int i=0; i<n; i++){
-	// 	for(int j=0; j<n; j++){
-	// 		normalize += kernel[i][j] = ((int *)data)[counter];
-	// 		counter ++;
-	// 	}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
-	// }
+	int kernel[n][n];
+	int counter = 0;
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n; j++){
+			normalize += kernel[i][j] = ((int *)data)[counter];
+			counter ++;
+		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
+	}
 	
 	// for(int kernelY=0; kernelY<n; kernelY++){
 	// 	for(int kernelX=0; kernelX<n; kernelX++){
@@ -192,7 +192,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
  //  			theP.a += (theOld.a*theKern)/normalize;
 	// 	}
 	// }
-	// free(kernel);
+	free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

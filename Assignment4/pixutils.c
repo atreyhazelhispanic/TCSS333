@@ -168,7 +168,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
 			normalize += kernel[i][j] = ((int *)data)[counter];
-			printf("%d\n", ((int *)data)[counter]);
+			printf("%d\n", normalize);
 			counter ++;
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
@@ -193,7 +193,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   	// 		theP.a += (theOld.a*theKern)/normalize;
 		}
 	}
-	free(kernel);
+	// free(kernel);
 }
 
 //very simple functions - does not use the data pointer - good place to start 

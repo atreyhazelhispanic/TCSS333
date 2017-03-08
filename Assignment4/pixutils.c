@@ -111,7 +111,7 @@ plugin *plugin_parse(char *argv[] ,int *iptr){
 	}	
 	if(!strcmp(argv[i]+2,"convolution")){
 	  	new->function = convolution;
-	  	if(new->data) free(data);
+	  	if(new->data) free(new->data);
 	  	new->data = malloc(9*sizeof(int));
 
 	  	// for(int j=0; j<9; j++){

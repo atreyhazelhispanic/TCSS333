@@ -177,9 +177,8 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 			int theKern = kernel[kernelY][kernelX];
 			int theX = (j-padding+kernelX+width)%width;  
   			int theY = (i-padding+kernelY+height)%height; 
-  			printf("%d \t %d\n", theX, theY);
-  			// rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
-  	// 		rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
+  			rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
+  			rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
 
   	// 		//extend for edges
   	// 		if(theX<0) theX=0;

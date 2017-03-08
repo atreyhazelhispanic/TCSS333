@@ -172,8 +172,10 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 		}// taking the array of 9 integers in data and puttin them into a 3x3 kernel
 	}
 	
-	for(int l=0; l<oldPixMap->imageHeight; l++){
-		printf("%c\n", oldPixMap->image[l]);
+	for(int i=0; i<oldPixMap->imageHeight; i++){
+		for(int j=0; j<oldPixMap->imageWidth; j++){
+			printf("%d\n", oldPixMap->pixArray_overlay[i][j]);
+		}
 	}
 
 	for(int kernelY=0; kernelY<n; kernelY++){

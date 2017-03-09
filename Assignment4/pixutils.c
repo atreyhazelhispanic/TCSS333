@@ -206,11 +206,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	((rgba**) p->pixArray_overlay)[i][j].g = g;
 	((rgba**) p->pixArray_overlay)[i][j].b = b;
 	((rgba**) p->pixArray_overlay)[i][j].a = a;
-	//free kernel
-	// for(int i; i<n; i++){
-	// 	free(kernel[i]);
-	// }
-	// free(kernel);
+	//Dont't need to free kernel since it's a data structure defined with size... no pointer, no malloc
 }
 
 //very simple functions - does not use the data pointer - good place to start 

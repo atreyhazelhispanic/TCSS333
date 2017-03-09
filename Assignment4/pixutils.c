@@ -162,6 +162,7 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	int width = oldPixMap->imageWidth;
 	int height = oldPixMap->imageHeight;
 	int normalize = 0; //Divide each element in the kernel by this sum
+	int r,g,b,a = 0;
 
 	int kernel[n][n];
 	int counter = 0;
@@ -175,10 +176,9 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
 	for(int kernelY=0; kernelY<n; kernelY++){
 		for(int kernelX=0; kernelX<n; kernelX++){
 			int theKern = kernel[kernelY][kernelX];
-			int theX = (j-padding+kernelX+width)%width;  
+			int theX = (j-padding+kernelX+width)%width;
   			int theY = (i-padding+kernelY+height)%height; 
-  			rgba theP = ((rgba**) p->pixArray_overlay)[theX][theY];
-  			rgba theOld = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
+  			rgba thePixel = ((rgba**) oldPixMap->pixArray_overlay)[theX][theY];
 
   			//extend for edges
   			if(theX<0) theX=0;
@@ -186,12 +186,26 @@ static void convolution(pixMap *p, pixMap *oldPixMap,int i, int j,void *data){
   			if(theY<0) theY=0;
   			if(theY>height-1) theY=height-1;
 
-  			theP.r += (theOld.r*theKern)/normalize;
-  			theP.g += (theOld.g*theKern)/normalize;
-  			theP.b += (theOld.b*theKern)/normalize;
-  			theP.a += (theOld.a*theKern)/normalize;
+  			//Increment the summation, from the product of current image - pixel->r,g,b, or a    value, and kernel value @ position
+  			r += (thePixel.r*theKern);
+  			g += (thePixel.g*theKern);
+  			b += (thePixel.b*theKern);
+  			a += (thePixel.a*theKern);
 		}
 	}
+
+	//Normalize the pixel @ (i,j) if != 0
+	if(normalize != 0){
+		r = r/normalize;
+		g = g/normalize;
+		b = b/normalize;
+		a = a/normalize;
+	}
+	//Set new pixel values onto p
+	((rgba**) p->pixArray_overlay)[i][j].r = r;
+	((rgba**) p->pixArray_overlay)[i][j].g = g;
+	((rgba**) p->pixArray_overlay)[i][j].b = b;
+	((rgba**) p->pixArray_overlay)[i][j].a = a;
 }
 
 //very simple functions - does not use the data pointer - good place to start 

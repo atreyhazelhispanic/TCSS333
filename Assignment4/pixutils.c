@@ -77,9 +77,12 @@ void pixMap_apply_plugin(pixMap *p,plugin *plug){
 int pixMap_write_bmp16(pixMap *p,char *filename){
 	BMP16map *bmp16=BMP16map_init(p->imageHeight,p->imageWidth,0,5,6,5); //initialize the bmp type
 	if(!bmp16) return 1;
-	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits
+	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits -> thus rgb only
 	//However pixMap and BMP16_map are "upside down" relative to each other
  	//need to flip one of the the row indices when copying
+ 	uint16_t r16 = 0;
+ 	uint16_t g16 = 0;
+ 	uint16_t b16 = 0;
 
 	BMP16map_write(bmp16,filename);
 	BMP16map_destroy(&bmp16);

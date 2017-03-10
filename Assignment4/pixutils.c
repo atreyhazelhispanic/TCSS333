@@ -85,6 +85,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  	uint16_t r16 = 0;
  	uint16_t g16 = 0;
  	uint16_t b16 = 0;
+ 	uint16_t a16 = 0;
 
  	for(int i=0; i < p->imageHeight; i++){
  		for(int j=0; j < p->imageWidth; j++){
@@ -92,8 +93,32 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  			r16 = pixel.r;
  			g16 = pixel.g;
  			b16 = pixel.b;
- 			// pix16 = r16>>4 | g16>>4 | b16>>4;
- 			printf("%u\t%u\t%u\n", r16, g16, b16);
+ 			a16 = pixel.a;
+ 			
+ 			//using shifts to push 1's of the edge and zero them
+ 			//00000000 RRRRrrrr
+			//00000000 0000RRRR >> 4
+ 			//RRRR0000 00000000 << 12
+ 
+ 			//using a mask to select the bits
+ 			//00000000 RRRRrrrr
+ 			// &
+ 			//00000000 11110000
+ 			//gives
+ 			//00000000 RRRR0000
+ 			//RRRR0000 00000000 << 8
+
+ 			//r16= 00000000 RRRRRrrr
+			//g16=00000000 GGGGGGgg
+			//b16=00000000 BBBBBbbb
+ 			//to  bmp16->pixMap[i][j]=RRRRRGGG GGGBBBBB
+
+ 			a16 = (b16 & 0xF0);
+ 			r16 = (r16 & 0xF0) << 5;
+	 		g16 = (g16 & 0xF0) << 6;
+ 			b16 = (a16 & 0xF0) >> 5;
+
+			pix16 = r16 | g16| b16 | a16; 			
  		}
  	}
 

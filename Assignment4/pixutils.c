@@ -115,9 +115,14 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  			//to  bmp16->pixMap[i][j]=RRRRRGGG GGGBBBBB
 
  			a16 = (b16 & 0xF0);
- 			r16 = (r16 & 0xF0) << 5;
-	 		g16 = (g16 & 0xF0) << 6;
- 			b16 = (a16 & 0xF0) >> 5;
+ 			r16 = (r16 & 0xF0) >> 3;
+	 		g16 = (g16 & 0xF0) >> 2;
+ 			b16 = (a16 & 0xF0) >> 3;
+ 			------------------------
+ 			a16 = (b16 & 0xF0) << 8;
+ 			r16 = (r16 & 0xF0) << 11;
+	 		g16 = (g16 & 0xF0) << 10;
+ 			b16 = (a16 & 0xF0) << 8;
 
 			pix16 = r16 | g16| b16 | a16;
 			bmp16->pixArray[i][j] = pix16;

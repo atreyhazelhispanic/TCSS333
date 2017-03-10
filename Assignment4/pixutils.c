@@ -93,7 +93,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  			r16 = pixel.r;
  			g16 = pixel.g;
  			b16 = pixel.b;
- 			pix16 = r>>4 | g>>4 | b>>4;
+ 			pix16 = r16>>4 | g16>>4 | b16>>4;
  		}
  	}
 

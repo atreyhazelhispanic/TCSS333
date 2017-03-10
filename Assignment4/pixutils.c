@@ -85,7 +85,6 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  	uint16_t r16 = 0;
  	uint16_t g16 = 0;
  	uint16_t b16 = 0;
- 	uint16_t a16 = 0;
 
  	for(int i=0; i < p->imageHeight; i++){
  		for(int j=0; j < p->imageWidth; j++){
@@ -93,7 +92,8 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
  			r16 = pixel.r;
  			g16 = pixel.g;
  			b16 = pixel.b;
- 			pix16 = r16>>4 | g16>>4 | b16>>4;
+ 			// pix16 = r16>>4 | g16>>4 | b16>>4;
+ 			printf("%u\t%u\t%u\n", r16, g16, b16);
  		}
  	}
 

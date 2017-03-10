@@ -87,7 +87,7 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
 
  	for(int i=0; i < p->imageHeight; i++){
  		for(int j=0; j < p->imageWidth; j++){
- 			
+ 			pixel = p->pixArray_overlay[i][j];
  		}
  	}
 

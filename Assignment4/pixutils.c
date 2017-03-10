@@ -80,9 +80,16 @@ int pixMap_write_bmp16(pixMap *p,char *filename){
 	//bmp16->pixArray[i][j] is 2-d array for bmp files. It is analogous to the one for our png file pixMaps except that it is 16 bits -> thus rgb only
 	//However pixMap and BMP16_map are "upside down" relative to each other
  	//need to flip one of the the row indices when copying
+ 	rgba pixel = 0;
  	uint16_t r16 = 0;
  	uint16_t g16 = 0;
  	uint16_t b16 = 0;
+
+ 	for(int i=0; i < p->imageHeight; i++){
+ 		for(int j=0; j < p->imageWidth; j++){
+ 			
+ 		}
+ 	}
 
 	BMP16map_write(bmp16,filename);
 	BMP16map_destroy(&bmp16);
